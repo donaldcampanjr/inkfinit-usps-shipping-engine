@@ -1,0 +1,535 @@
+/**
+ * WTC Shipping Engine - Frontend Styles
+ * Premium Cart, Checkout, and Product Page Styling
+ * 
+ * Design System:
+ * - Primary: #002868 (Navy Blue)
+ * - Accent: #0fb47e (Teal)
+ * - Success: #10b981
+ */
+
+/* ==========================================================================
+   Accessibility - Screen Reader Only Text
+   ========================================================================== */
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #eee;
+	clip: auto !important;
+	clip-path: none;
+	color: #444;
+	display: block;
+	font-size: 1em;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+
+/* ==========================================================================
+   WooCommerce Checkout Fixes
+   ========================================================================== */
+
+/* Hide duplicate WooPay "Save my info" sections (known WooCommerce bug) */
+.woocommerce-checkout #woopay-save-new-user:nth-of-type(2),
+.woocommerce-checkout .woopay-save-my-info-wrapper:nth-of-type(2),
+.woocommerce-checkout #payment .payment_methods + #woopay-save-new-user {
+	display: none !important;
+}
+
+/* ==========================================================================
+   CSS Custom Properties (Frontend)
+   ========================================================================== */
+
+:root {
+	--wtc-primary: #002868;
+	--wtc-primary-light: #003d8f;
+	--wtc-accent: #0fb47e;
+	--wtc-success: #10b981;
+	--wtc-success-bg: #d1fae5;
+	--wtc-warning: #f59e0b;
+	--wtc-warning-bg: #fef3c7;
+	--wtc-error: #ef4444;
+	--wtc-info: #3b82f6;
+	--wtc-info-bg: #dbeafe;
+	--wtc-surface: #ffffff;
+	--wtc-surface-raised: #f8fafc;
+	--wtc-border: #e2e8f0;
+	--wtc-text-primary: #0f172a;
+	--wtc-text-secondary: #475569;
+	--wtc-radius: 10px;
+	--wtc-radius-sm: 6px;
+	--wtc-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+	--wtc-transition: 250ms ease;
+}
+
+/* ==========================================================================
+   Purchase Limit Notices on Product Pages
+   ========================================================================== */
+
+.wtcc-purchase-limit-notice {
+	background: linear-gradient(135deg, var(--wtc-info-bg) 0%, #bfdbfe 100%);
+	border-left: 4px solid var(--wtc-primary);
+	padding: 16px 20px;
+	margin: 0 0 20px 0;
+	border-radius: var(--wtc-radius-sm);
+	font-size: 14px;
+	line-height: 1.6;
+	animation: wtcc-fadeIn 0.3s ease-out;
+	box-shadow: var(--wtc-shadow);
+}
+
+.wtcc-purchase-limit-notice p {
+	margin: 0;
+	color: var(--wtc-text-primary);
+}
+
+.wtcc-purchase-limit-notice strong {
+	color: var(--wtc-primary);
+	font-weight: 600;
+}
+
+.wtcc-purchase-limit-notice.wtcc-limit-warning {
+	background: linear-gradient(135deg, var(--wtc-warning-bg) 0%, #fde68a 100%);
+	border-left-color: var(--wtc-warning);
+}
+
+.wtcc-purchase-limit-notice.wtcc-limit-warning strong {
+	color: #92400e;
+}
+
+/* ==========================================================================
+   Cart Page - Premium Purchase Limit Notices
+   ========================================================================== */
+
+.woocommerce-cart .wtcc-cart-limit-notice {
+	background: var(--wtc-surface);
+	border: 2px solid var(--wtc-primary);
+	border-radius: var(--wtc-radius);
+	padding: 18px 22px;
+	margin-bottom: 24px;
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	box-shadow: var(--wtc-shadow);
+	transition: all var(--wtc-transition);
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice:hover {
+	box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.12);
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice::before {
+	content: "\f348"; /* Dashicons info icon */
+	font-family: "dashicons";
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	background: linear-gradient(135deg, var(--wtc-primary) 0%, var(--wtc-primary-light) 100%);
+	color: #fff;
+	border-radius: 50%;
+	font-weight: bold;
+	font-size: 16px;
+	flex-shrink: 0;
+	margin-top: 0;
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.7;
+	color: var(--wtc-text-primary);
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice strong {
+	color: var(--wtc-primary);
+	font-weight: 700;
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice .wtcc-limit-current {
+	display: inline-block;
+	background: linear-gradient(135deg, var(--wtc-primary) 0%, var(--wtc-primary-light) 100%);
+	color: #fff;
+	padding: 3px 10px;
+	border-radius: 100px;
+	font-size: 12px;
+	font-weight: 700;
+	margin: 0 3px;
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice .wtcc-limit-max {
+	display: inline-block;
+	background: linear-gradient(135deg, var(--wtc-info-bg) 0%, #bfdbfe 100%);
+	color: var(--wtc-primary);
+	padding: 3px 10px;
+	border-radius: 100px;
+	font-size: 12px;
+	font-weight: 700;
+	margin: 0 3px;
+}
+
+/* Warning state when near/at limit */
+.woocommerce-cart .wtcc-cart-limit-notice.wtcc-at-limit {
+	border-color: var(--wtc-warning);
+	background: linear-gradient(135deg, var(--wtc-warning-bg) 0%, #fff 100%);
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice.wtcc-at-limit::before {
+	content: "\f534"; /* Dashicons warning icon */
+	background: linear-gradient(135deg, var(--wtc-warning) 0%, #d97706 100%);
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice.wtcc-at-limit strong {
+	color: #92400e;
+}
+
+.woocommerce-cart .wtcc-cart-limit-notice.wtcc-at-limit .wtcc-limit-current {
+	background: linear-gradient(135deg, var(--wtc-warning) 0%, #d97706 100%);
+}
+
+/* ==========================================================================
+   Checkout Page - Premium Purchase Limit Summary
+   ========================================================================== */
+
+.woocommerce-checkout .wtcc-checkout-limits-summary {
+	background: linear-gradient(135deg, var(--wtc-surface-raised) 0%, #fff 100%);
+	border: 1px solid var(--wtc-border);
+	border-radius: var(--wtc-radius);
+	padding: 24px;
+	margin-bottom: 28px;
+	box-shadow: var(--wtc-shadow);
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary h3 {
+	margin: 0 0 16px 0;
+	font-size: 16px;
+	font-weight: 700;
+	color: var(--wtc-text-primary);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary h3::before {
+	content: "\f147"; /* Dashicons yes icon */
+	font-family: "dashicons";
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	background: linear-gradient(135deg, var(--wtc-success) 0%, #059669 100%);
+	color: #fff;
+	border-radius: 50%;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary li {
+	padding: 10px 0;
+	border-bottom: 1px solid var(--wtc-border);
+	font-size: 13px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: background var(--wtc-transition);
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary li:hover {
+	background: rgba(0, 40, 104, 0.02);
+	margin: 0 -12px;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary li:last-child {
+	border-bottom: none;
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary .wtcc-product-name {
+	color: var(--wtc-text-secondary);
+}
+
+.woocommerce-checkout .wtcc-checkout-limits-summary .wtcc-limit-badge {
+	background: linear-gradient(135deg, var(--wtc-success) 0%, #059669 100%);
+	color: #fff;
+	padding: 4px 12px;
+	border-radius: 100px;
+	font-size: 11px;
+	font-weight: 700;
+	white-space: nowrap;
+	box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+/* ==========================================================================
+   WooCommerce Error/Notice Enhancement
+   ========================================================================== */
+
+.woocommerce-error.wtcc-limit-error,
+.woocommerce-message.wtcc-limit-message {
+	position: relative;
+	padding-left: 50px !important;
+}
+
+.woocommerce-error.wtcc-limit-error::before,
+.woocommerce-message.wtcc-limit-message::before {
+	content: "\f348"; /* Dashicons info icon */
+	font-family: "dashicons";
+	position: absolute;
+	left: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	background: rgba(255,255,255,0.3);
+	border-radius: 50%;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+/* ==========================================================================
+   Responsive Design - Comprehensive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+	.wtcc-purchase-limit-notice {
+		padding: 12px 14px;
+		font-size: 13px;
+	}
+	
+	.woocommerce-cart .wtcc-cart-limit-notice {
+		flex-direction: column;
+		gap: 12px;
+		padding: 16px 18px;
+	}
+	
+	.woocommerce-cart .wtcc-cart-limit-notice::before {
+		margin-top: 0;
+		align-self: flex-start;
+	}
+	
+	.woocommerce-checkout .wtcc-checkout-limits-summary {
+		padding: 18px;
+	}
+	
+	.woocommerce-checkout .wtcc-checkout-limits-summary h3 {
+		font-size: 15px;
+	}
+	
+	.woocommerce-checkout .wtcc-checkout-limits-summary li {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+	
+	.woocommerce-checkout .wtcc-checkout-limits-summary li:hover {
+		margin: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	
+	/* Checkout USPS badge responsive */
+	.wtc-shipping-accuracy-notice td > div {
+		padding: 12px 14px !important;
+	}
+	
+	.wtc-shipping-accuracy-notice td > div > div {
+		flex-direction: column !important;
+		gap: 12px !important;
+		text-align: center;
+	}
+	
+	.wtc-shipping-accuracy-notice td > div > div > div:first-child {
+		display: none; /* Hide logo on very small screens for checkout */
+	}
+	
+	.wtc-shipping-accuracy-notice td > div > div > div:last-child {
+		width: 100%;
+	}
+}
+
+@media (max-width: 480px) {
+	.wtcc-purchase-limit-notice {
+		padding: 10px 12px;
+		font-size: 12px;
+		border-radius: var(--wtc-radius-sm);
+	}
+	
+	.woocommerce-cart .wtcc-cart-limit-notice {
+		padding: 14px;
+		border-radius: var(--wtc-radius-sm);
+	}
+	
+	.woocommerce-cart .wtcc-cart-limit-notice p {
+		font-size: 13px;
+	}
+	
+	.woocommerce-cart .wtcc-cart-limit-notice .wtcc-limit-current,
+	.woocommerce-cart .wtcc-cart-limit-notice .wtcc-limit-max {
+		padding: 2px 8px;
+		font-size: 11px;
+	}
+	
+	.woocommerce-checkout .wtcc-checkout-limits-summary {
+		padding: 14px;
+		margin-bottom: 20px;
+	}
+	
+	.woocommerce-checkout .wtcc-checkout-limits-summary .wtcc-limit-badge {
+		font-size: 10px;
+		padding: 3px 10px;
+	}
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes wtcc-fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Quantity input max highlight */
+.woocommerce .quantity input.qty[disabled] {
+	background: #f8fafc;
+	border-color: #cbd5e1;
+	cursor: not-allowed;
+	opacity: 0.7;
+}
+
+/* Cart item with limit indicator */
+.woocommerce-cart-form__cart-item.has-purchase-limit .product-name::after {
+	content: "\f332"; /* Dashicons shield icon */
+	font-family: "dashicons";
+	font-size: 14px;
+	opacity: 0.5;
+	margin-left: 4px;
+	color: #2271b1;
+}
+
+/* ==========================================================================
+   Shipping Rate Display - Sorted by Cost
+   ========================================================================== */
+
+/* Shipping method container enhancements */
+.woocommerce-shipping-methods {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.woocommerce-shipping-methods li {
+	padding: 12px 16px;
+	margin-bottom: 8px;
+	background: var(--wtc-surface);
+	border: 2px solid var(--wtc-border);
+	border-radius: var(--wtc-radius);
+	transition: all var(--wtc-transition);
+}
+
+.woocommerce-shipping-methods li:hover {
+	border-color: var(--wtc-primary);
+	box-shadow: 0 2px 8px rgba(0, 40, 104, 0.1);
+}
+
+.woocommerce-shipping-methods li:first-child {
+	border-color: var(--wtc-accent);
+	background: linear-gradient(135deg, rgba(15, 180, 126, 0.05) 0%, rgba(15, 180, 126, 0.02) 100%);
+}
+
+.woocommerce-shipping-methods li:first-child::before {
+	content: "Best Value";
+	display: inline-block;
+	font-size: 9px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	background: var(--wtc-accent);
+	color: white;
+	padding: 2px 8px;
+	border-radius: 100px;
+	margin-bottom: 6px;
+}
+
+/* Rate timestamp styling */
+.wtcc-rate-timestamp {
+	display: block;
+	margin-top: 4px;
+	color: #94a3b8 !important;
+	font-size: 10px !important;
+	font-weight: 400 !important;
+	opacity: 0.8;
+}
+
+/* Shipping method label enhancements */
+.woocommerce-shipping-methods label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 8px;
+	cursor: pointer;
+	font-weight: 500;
+	color: var(--wtc-text-primary);
+}
+
+.woocommerce-shipping-methods label .woocommerce-Price-amount {
+	font-weight: 700;
+	color: var(--wtc-primary);
+	margin-left: auto;
+}
+
+/* Selected shipping method */
+.woocommerce-shipping-methods li:has(input:checked) {
+	border-color: var(--wtc-primary);
+	background: linear-gradient(135deg, rgba(0, 40, 104, 0.03) 0%, rgba(0, 40, 104, 0.01) 100%);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+	.woocommerce-shipping-methods li {
+		padding: 10px 12px;
+	}
+	
+	.woocommerce-shipping-methods li:first-child::before {
+		font-size: 8px;
+		padding: 2px 6px;
+	}
+	
+	.wtcc-rate-timestamp {
+		font-size: 9px !important;
+	}
+}

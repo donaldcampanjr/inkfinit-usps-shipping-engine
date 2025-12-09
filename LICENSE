@@ -1,0 +1,69 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2025 Inkfinit LLC
+
+IMPORTANT: DUAL LICENSING
+
+This codebase uses DUAL LICENSING:
+
+1. FREE EDITION (This License - GPL-3.0-or-later)
+   - The free edition plugin is released under GPL-3.0-or-later
+   - Available on WordPress.org
+   - Anyone can use, modify, and redistribute freely
+   - See section below for full GPL text
+
+2. PRO ENGINE (Commercial License)
+   - The full Pro engine requires a paid license from Inkfinit LLC
+   - See LICENSE-COMMERCIAL.md for Pro license terms
+   - Available from https://inkfinit.pro
+   - NOT redistributable without written permission
+
+---
+
+## FREE EDITION LICENSE (GPL-3.0-or-later)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+ADDITIONAL TERMS
+
+If you modify this program, you must cause the modified files to carry
+prominent notices stating that you have changed the files and the date
+of any change.
+
+FULL TEXT
+
+The full text of the GNU General Public License v3.0 is available at:
+https://www.gnu.org/licenses/gpl-3.0-or-later.html
+
+SUMMARY
+
+This plugin (Free Edition) is free software and comes with ABSOLUTELY NO WARRANTY.
+You are free to:
+- Use it for any purpose
+- Copy it
+- Modify it
+- Distribute modified versions
+
+Under the condition that:
+- You include the license and copyright notice
+- You disclose the source code
+- You use the same license for derivatives
+- You document changes made
+
+For more information, visit https://www.gnu.org/licenses/gpl-3.0-or-later.html
+
+---
+
+FOR PRO LICENSE TERMS, see LICENSE-COMMERCIAL.md

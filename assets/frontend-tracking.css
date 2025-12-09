@@ -1,0 +1,182 @@
+/* Customer Tracking Display Styles */
+
+.wtcc-tracking-section {
+	margin-top: 30px;
+}
+
+.wtcc-tracking-section h2 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 20px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #e2e8f0;
+}
+
+.wtcc-tracking-section .dashicons-location {
+	color: #0fb47e;
+}
+
+.wtcc-tracking-card {
+	background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+	border: 2px solid #e2e8f0;
+	border-radius: 16px;
+	padding: 24px;
+	position: relative;
+	overflow: hidden;
+}
+
+.wtcc-tracking-card-accent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: linear-gradient(90deg, #002868 0%, #0fb47e 100%);
+}
+
+.wtcc-tracking-number-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 20px;
+}
+
+.wtcc-tracking-number-label {
+	font-size: 12px;
+	color: #64748b;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.wtcc-tracking-number {
+	font-size: 18px;
+	font-weight: 700;
+	font-family: 'SF Mono', Monaco, monospace;
+	color: #0f172a;
+	margin-top: 4px;
+}
+
+.wtcc-tracking-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	background-color: #fff;
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	padding: 8px 16px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #0f172a;
+	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.wtcc-tracking-link:hover {
+	background-color: #f8fafc;
+	border-color: #94a3b8;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.wtcc-tracking-link .dashicons-external {
+	font-size: 16px;
+	height: 16px;
+	width: 16px;
+}
+
+.wtcc-tracking-status-container {
+	margin-top: 24px;
+}
+
+.wtcc-tracking-status-summary {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px;
+	background-color: #f1f5f9;
+	border-radius: 12px;
+	border: 1px solid #e2e8f0;
+}
+
+.wtcc-status-icon {
+	font-size: 28px;
+	height: 28px;
+	width: 28px;
+	color: #0fb47e;
+}
+
+.wtcc-status-text-label {
+	font-size: 13px;
+	color: #64748b;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.wtcc-status-text-summary {
+	font-size: 16px;
+	font-weight: 600;
+	color: #0f172a;
+	margin-top: 2px;
+}
+
+.wtcc-tracking-history {
+	margin-top: 24px;
+	padding-left: 20px;
+	border-left: 3px solid #e2e8f0;
+	list-style: none;
+}
+
+.wtcc-tracking-event {
+	position: relative;
+	padding-bottom: 24px;
+}
+
+.wtcc-tracking-event:last-child {
+	padding-bottom: 0;
+}
+
+.wtcc-tracking-event-dot {
+	position: absolute;
+	left: -31.5px;
+	top: 4px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: #cbd5e1;
+	border: 2px solid #f1f5f9;
+}
+
+.wtcc-tracking-event.wtcc-current-event .wtcc-tracking-event-dot {
+	background-color: #0fb47e;
+	transform: scale(1.2);
+}
+
+.wtcc-tracking-event-description {
+	font-weight: 500;
+	color: #1e293b;
+}
+
+.wtcc-tracking-event-location {
+	font-size: 14px;
+	color: #64748b;
+	margin-top: 4px;
+}
+
+.wtcc-tracking-event-date {
+	font-size: 13px;
+	color: #94a3b8;
+	margin-top: 6px;
+}
+
+.wtcc-tracking-error {
+	margin-top: 20px;
+	padding: 15px;
+	background-color: #fff1f2;
+	border: 1px solid #ffdfe2;
+	border-radius: 8px;
+	color: #c51021;
+}

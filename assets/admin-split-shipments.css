@@ -1,0 +1,220 @@
+/**
+ * Split Shipments Admin Styles
+ * 
+ * @package Inkfinit_Shipping_Engine
+ */
+
+/* Split Shipments Meta Box */
+.wtc-split-shipments-container {
+    padding: 10px 0;
+}
+
+.wtc-split-shipment-group {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.wtc-split-shipment-group:last-child {
+    margin-bottom: 0;
+}
+
+.wtc-split-shipment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.wtc-split-shipment-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1d2327;
+}
+
+.wtc-split-shipment-items {
+    margin-bottom: 15px;
+}
+
+.wtc-split-shipment-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.wtc-split-shipment-item:last-child {
+    border-bottom: none;
+}
+
+.wtc-split-shipment-item-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.wtc-split-shipment-item-details {
+    flex: 1;
+}
+
+.wtc-split-shipment-item-name {
+    font-weight: 500;
+    color: #1d2327;
+}
+
+.wtc-split-shipment-item-qty {
+    color: #666;
+    font-size: 13px;
+}
+
+.wtc-split-shipment-item-actions {
+    margin-left: 10px;
+}
+
+/* Tracking Section */
+.wtc-split-tracking-section {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.wtc-split-tracking-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #1d2327;
+}
+
+.wtc-split-tracking-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.wtc-split-tracking-input:focus {
+    border-color: #2271b1;
+    outline: none;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+/* Carrier Select */
+.wtc-split-carrier-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* Action Buttons */
+.wtc-split-shipment-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.wtc-split-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.wtc-split-btn-primary {
+    background: #2271b1;
+    color: #fff;
+}
+
+.wtc-split-btn-primary:hover {
+    background: #135e96;
+}
+
+.wtc-split-btn-secondary {
+    background: #f0f0f1;
+    color: #1d2327;
+    border: 1px solid #c3c4c7;
+}
+
+.wtc-split-btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.wtc-split-btn-danger {
+    background: #d63638;
+    color: #fff;
+}
+
+.wtc-split-btn-danger:hover {
+    background: #b32d2e;
+}
+
+/* Status Badges */
+.wtc-split-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.wtc-split-status-pending {
+    background: #f0f0f1;
+    color: #666;
+}
+
+.wtc-split-status-shipped {
+    background: #d5f5e3;
+    color: #196f3d;
+}
+
+.wtc-split-status-delivered {
+    background: #abebc6;
+    color: #145a32;
+}
+
+/* Add Shipment Form */
+.wtc-add-shipment-form {
+    background: #f9f9f9;
+    border: 1px dashed #c3c4c7;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.wtc-add-shipment-form h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #1d2327;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .wtc-split-shipment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .wtc-split-shipment-actions {
+        flex-direction: column;
+    }
+    
+    .wtc-split-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

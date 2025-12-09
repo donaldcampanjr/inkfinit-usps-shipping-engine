@@ -1,0 +1,40 @@
+/* WTC Shipping - Frontend Product Preset Info Box */
+
+.wtcc-info-box {
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.wtcc-info-box p {
+    margin: 5px 0;
+}
+
+.wtcc-info-box-warning {
+    border-color: #ffb900;
+    background-color: #fff8e5;
+}
+
+.wtcc-info-box-warning p {
+    margin: 0;
+}
+
+.wtcc-info-box-success {
+    border-color: #00a32a;
+    background-color: #f6ffed;
+}
+
+.wtcc-info-box-success p {
+    color: #333;
+    font-size: 13px;
+}
+
+.wtcc-info-box-success .preset-source {
+    color: #666;
+}
+
+.wtcc-info-box-success .variant-info {
+    color: #666;
+    font-size: 12px;
+}

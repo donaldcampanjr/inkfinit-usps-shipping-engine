@@ -1,0 +1,21 @@
+/* Delivery Estimates Styles */
+
+.wtcc-delivery-estimate {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.9em;
+	color: #555;
+	margin-top: 4px;
+}
+
+.wtcc-delivery-estimate .dashicons {
+	font-size: 18px;
+	height: 18px;
+	width: 18px;
+	color: #007cba;
+}
+
+.wtcc-delivery-estimate-label {
+	font-weight: 600;
+}

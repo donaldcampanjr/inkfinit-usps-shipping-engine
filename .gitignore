@@ -1,0 +1,66 @@
+# ===========================================
+# Inkfinit USPS Shipping Engine - .gitignore
+# ===========================================
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+*.swp
+*~
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+
+# Build artifacts and packages
+*.zip
+*.tar.gz
+*.rar
+node_modules/
+vendor/
+dist/
+build/
+
+# WordPress specific
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+
+# Logs and debug
+*.log
+debug.log
+error_log
+php_errors.log
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Testing
+tests/
+phpunit.xml
+.phpunit.result.cache
+coverage/
+
+# Documentation build outputs
+docs/_build/
+
+# Keep these folders but ignore their contents if needed
+# !.gitkeep

@@ -1,0 +1,482 @@
+/*
+ * WTC Shipping Core - Unified Admin Stylesheet
+ *
+ * This file consolidates all admin-specific CSS for the plugin.
+ * By using a single stylesheet, we reduce HTTP requests and improve performance.
+ *
+ * Date: 2025-12-02
+ */
+
+/* ==========================================================================
+   Global & Helper Styles
+   ========================================================================== */
+
+.wtc-admin-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+}
+
+.wtc-admin-footer p {
+    margin: 0;
+}
+
+.wtc-ul-disc {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.wtc-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.wtc-quick-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wtc-quick-links li a {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+}
+
+.wtc-quick-links li a:before {
+    content: "→";
+    margin-right: 0.5rem;
+    color: #888;
+}
+
+/* ==========================================================================
+   Dashboard & Diagnostics
+   ========================================================================== */
+
+.wtcc-status-success,
+.wtcc-status-configured {
+    color: #46b450; /* WordPress green */
+}
+
+.wtcc-status-warning,
+.wtcc-status-not-set {
+    color: #ffb900; /* WordPress yellow */
+}
+
+.wtcc-status-error,
+.wtcc-status-failed {
+    color: #dc3232; /* WordPress red */
+}
+
+.wtcc-stats-list .dashicons,
+.wtcc-link-list .dashicons,
+.postbox .description .dashicons {
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.wtcc-stats-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wtcc-stats-list li {
+    margin-bottom: 12px;
+}
+
+.wtcc-stats-list li a {
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-bar-fill.success {
+    background-color: #46b450;
+}
+
+.progress-bar-fill.warning {
+    background-color: #ffb900;
+}
+
+.progress-bar-fill.error {
+    background-color: #dc3232;
+}
+
+#wtcc-test-api-status {
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* ==========================================================================
+   Shipping Rules (Rates) Page
+   ========================================================================== */
+
+.wtc-rates-sidebar-table td {
+    text-align: right;
+}
+
+.wtc-rates-sidebar-table-container {
+    text-align: center;
+    margin-top: 1em;
+}
+
+/* ==========================================================================
+   USPS API Page
+   ========================================================================== */
+
+#postbox-container-1 .postbox ol {
+    padding-left: 20px;
+    margin-top: 0;
+}
+
+#postbox-container-1 .postbox ol li {
+    margin-bottom: 1em;
+}
+
+#postbox-container-1 .postbox .button .dashicons {
+    vertical-align: text-top;
+}
+
+/* ==========================================================================
+   Security Dashboard
+   ========================================================================== */
+
+.wtc-security-table .pass {
+    color: #28a745;
+}
+
+.wtc-security-table .fail {
+    color: #dc3545;
+}
+
+.wtc-security-table .status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+}
+
+.wtc-raw-log {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   Presets Editor
+   ========================================================================== */
+
+.wtc-shipping-preset-star {
+    color: #f0b849;
+}
+
+.wtc-shipping-status-active {
+    color: #2271b1;
+}
+
+.wtc-shipping-delete-form {
+    display: inline;
+}
+
+.wtc-shipping-button-link-delete {
+    color: #b32d2e;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.wtc-shipping-button-link-delete:hover {
+    color: #761c1d;
+}
+
+/* ==========================================================================
+   Bulk Variation Manager
+   ========================================================================== */
+
+#wtcc_preview_card,
+#wtcc_action_card {
+    display: none;
+}
+
+#wtcc_preview_count {
+    display: none;
+}
+
+#wtcc_preview_table_container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.wtcc-action-fields {
+    display: none;
+}
+
+#wtcc_results {
+    display: none;
+    margin-top: 15px;
+}
+
+.spinner {
+    float: none;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Presets Page
+   ========================================================================== */
+
+.wtc-rate-example {
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.wtc-zone-multiplier {
+    color: #d63638;
+}
+
+.wtc-preset-slug {
+    font-weight: normal;
+}
+
+#calc_results .wp-list-table td {
+    text-align: right;
+}
+
+/* ==========================================================================
+   Flat Rate Boxes Page
+   ========================================================================== */
+
+.wtc-shipping-meta-box-list {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.wtc-shipping-boxes-heading {
+    margin-top: 25px;
+}
+
+/* ==========================================================================
+   User Guide
+   ========================================================================== */
+
+.wtc-guide-subsection {
+    margin-bottom: 1.5em;
+}
+
+.wtc-guide-list,
+.wtc-guide-steps {
+    list-style-position: inside;
+    margin-left: 20px;
+}
+
+.wtc-guide-list {
+    list-style-type: disc;
+}
+
+.wtc-guide-steps {
+    list-style-type: decimal;
+}
+
+/* ==========================================================================
+   Order Metaboxes (Split Shipments & Pickup Scheduling)
+   ========================================================================== */
+
+.wtcc-shipment-status-badge {
+    margin-left: 10px;
+}
+
+.wtcc-pickup-scheduled ul {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#wtcc_custom_address_fields.hidden {
+    display: none;
+}
+
+#wtcc_custom_state {
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Packing Slips (Print Styles)
+   ========================================================================== */
+
+@media screen {
+    body.wtc-packing-slip {
+        background: #f0f0f1;
+    }
+
+    .wtc-packing-slip .page {
+        background: #fff;
+        margin: 20px auto;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        width: 8.5in;
+        height: 11in;
+        padding: 0.75in;
+        position: relative;
+    }
+
+    .wtc-packing-slip .print-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background: #2271b1;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 1000;
+    }
+    .wtc-packing-slip .print-button:hover {
+        background: #1e639b;
+    }
+}
+
+@media print {
+    body.wtc-packing-slip {
+        background: none;
+    }
+    .wtc-packing-slip .print-button {
+        display: none;
+    }
+    .wtc-packing-slip .page {
+        border: none;
+        margin: 0;
+        padding: 0.5in;
+        width: auto;
+        height: auto;
+        min-height: 9in;
+        box-shadow: none;
+    }
+}
+
+.wtc-packing-slip * {
+    box-sizing: border-box;
+}
+
+.wtc-packing-slip .page-content {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #000;
+}
+
+.wtc-packing-slip .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000;
+}
+
+.wtc-packing-slip .company-info {
+    flex: 1;
+}
+
+.wtc-packing-slip .company-logo {
+    max-width: 200px;
+    max-height: 80px;
+    margin-bottom: 10px;
+}
+
+.wtc-packing-slip .order-info {
+    flex: 1;
+    text-align: right;
+}
+
+.wtc-packing-slip .order-info h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.wtc-packing-slip .addresses {
+    display: flex;
+    margin-top: 30px;
+    gap: 30px;
+}
+
+.wtc-packing-slip .address-box {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.wtc-packing-slip .address-box h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.wtc-packing-slip .items-table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+.wtc-packing-slip .items-table th,
+.wtc-packing-slip .items-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.wtc-packing-slip .items-table th {
+    background: #f7f7f7;
+    font-weight: bold;
+}
+
+.wtc-packing-slip .items-table .sku {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.wtc-packing-slip .items-table .qty {
+    text-align: center;
+}
+
+.wtc-packing-slip .items-table .price {
+    text-align: right;
+}
+
+.wtc-packing-slip .footer {
+    position: absolute;
+    bottom: 0.75in;
+    left: 0.75in;
+    right: 0.75in;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+}
+
+.wtc-packing-slip .barcode {
+    text-align: center;
+    margin-top: 20px;
+}

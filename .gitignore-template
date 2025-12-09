@@ -1,0 +1,139 @@
+# .gitignore for Boundless Ink Shipping Engine
+# This file prevents committing sensitive data to GitHub
+
+# ======================
+# Operating System
+# ======================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ======================
+# IDE & Editors
+# ======================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ======================
+# Environment & Configuration
+# ======================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+wp-config.php
+wp-config-*.php
+
+# ======================
+# WordPress (if this is in a WordPress directory)
+# ======================
+wp-content/uploads/
+wp-content/cache/
+wp-content/backup-*
+wp-content/plugins/*/temp
+wp-admin/
+wp-includes/
+.htaccess
+
+# ======================
+# Dependency Management
+# ======================
+composer.lock
+vendor/
+node_modules/
+package-lock.json
+yarn.lock
+
+# ======================
+# Build & Distribution
+# ======================
+dist/
+build/
+*.zip
+*.tar.gz
+*.rar
+.webpack/
+
+# ======================
+# Credentials & Secrets (CRITICAL - DO NOT COMMIT!)
+# ======================
+credentials.json
+secrets.json
+api-keys.json
+.secrets/
+*.pem
+*.key
+*.crt
+
+# ======================
+# Development & Testing
+# ======================
+phpunit.xml
+phpunit.xml.dist
+.phpunit.result.cache
+coverage/
+test-results/
+.jest/
+.coverage
+.nyc_output/
+
+# ======================
+# Temporary Files
+# ======================
+*.tmp
+*.temp
+tmp/
+temp/
+local-dev/
+
+# ======================
+# Debug & Logs
+# ======================
+debug.log
+error.log
+*.log
+wp-debug.log
+
+# ======================
+# Local Testing
+# ======================
+dev-settings.php
+local-config.php
+test-database.sqlite
+
+# ======================
+# IDE Metadata
+# ======================
+.eslintcache
+.prettier-cache
+.stylelintignore.cache
+
+# ======================
+# OS Specific
+# ======================
+Thumbs.db
+.Thumbs.db
+
+# ======================
+# GitHub specific
+# ======================
+.github/workflows/secrets.yml
+.github/credentials/
+
+# ======================
+# Backups
+# ======================
+*.bak
+*.backup
+*.old
+*.orig
