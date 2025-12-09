@@ -163,12 +163,12 @@ function wtcc_require_license_tier( $feature_name, $required_tier = 'pro' ) {
 	<div class="wrap">
 		<h1><?php echo esc_html( $feature_name ); ?></h1>
 		
-		<div class="notice notice-warning" style="padding: 20px; margin-top: 20px;">
-			<h2 style="margin-top: 0;">
-				<span class="dashicons dashicons-lock" style="color: #d63638;"></span>
+		<div class="notice notice-warning">
+			<h2>
+				<span class="dashicons dashicons-lock"></span>
 				<?php esc_html_e( 'License Required', 'wtc-shipping' ); ?>
 			</h2>
-			<p style="font-size: 14px;">
+			<p>
 				<?php
 				printf(
 					/* translators: 1: feature name, 2: tier name */
@@ -178,10 +178,10 @@ function wtcc_require_license_tier( $feature_name, $required_tier = 'pro' ) {
 				);
 				?>
 			</p>
-			<p style="font-size: 14px;">
+			<p>
 				<?php esc_html_e( 'You are currently on the Free tier which includes:', 'wtc-shipping' ); ?>
 			</p>
-			<ul style="list-style: disc; margin-left: 20px;">
+			<ul class="ul-disc">
 				<li><?php esc_html_e( 'Basic preset configuration', 'wtc-shipping' ); ?></li>
 				<li><?php esc_html_e( 'Plugin exploration and configuration', 'wtc-shipping' ); ?></li>
 			</ul>
@@ -189,15 +189,15 @@ function wtcc_require_license_tier( $feature_name, $required_tier = 'pro' ) {
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ); ?>" class="button button-primary button-large">
 					<?php esc_html_e( 'Enter License Key', 'wtc-shipping' ); ?>
 				</a>
-				<a href="https://inkfinit.pro/pricing" target="_blank" rel="noopener" class="button button-secondary button-large" style="margin-left: 10px;">
+				<a href="https://inkfinit.pro/pricing" target="_blank" rel="noopener" class="button button-secondary button-large">
 					<?php esc_html_e( 'View Pricing', 'wtc-shipping' ); ?>
 				</a>
 			</p>
 		</div>
 		
 		<!-- Blurred preview of the feature -->
-		<div style="margin-top: 30px; filter: blur(3px); opacity: 0.5; pointer-events: none; user-select: none;">
-			<div class="card" style="max-width: 800px;">
+		<div class="wtcc-blurred-preview">
+			<div class="card">
 				<h2><?php echo esc_html( $feature_name ); ?></h2>
 				<p><?php esc_html_e( 'This feature is available with an active license. Upgrade to unlock full functionality.', 'wtc-shipping' ); ?></p>
 				<table class="form-table">
@@ -228,9 +228,7 @@ function wtcc_pro_required_badge( $required_tier = 'pro' ) {
 	$label = ucfirst( $required_tier );
 	
 	printf(
-		'<span style="display:inline-block;margin-left:6px;padding:2px 8px;border-radius:3px;background:%s;color:%s;font-size:11px;font-weight:600;text-transform:uppercase;">%s</span>',
-		esc_attr( $color['bg'] ),
-		esc_attr( $color['text'] ),
+		'<span class="update-plugins count-1"><span class="plugin-count">%s</span></span>',
 		esc_html( $label )
 	);
 }

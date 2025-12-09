@@ -112,11 +112,11 @@ function wtcc_shipping_dashboard() {
 
 		<?php if ( ! $is_licensed ) : ?>
 		<!-- FREE EDITION DASHBOARD -->
-		<div class="notice notice-info" style="margin: 15px 0; padding: 15px 20px; border-left-color: #2271b1;">
-			<h3 style="margin-top: 0;">📦 <?php esc_html_e( 'Welcome to Inkfinit USPS Shipping Calculator', 'wtc-shipping' ); ?></h3>
+		<div class="notice notice-info">
+			<h3>📦 <?php esc_html_e( 'Welcome to Inkfinit USPS Shipping Calculator', 'wtc-shipping' ); ?></h3>
 			<p><?php esc_html_e( 'You are using the Free Edition. Use the rate calculator to estimate USPS shipping costs.', 'wtc-shipping' ); ?></p>
 			<p><strong><?php esc_html_e( 'Upgrade to Pro to unlock:', 'wtc-shipping' ); ?></strong></p>
-			<ul style="list-style: disc; margin-left: 20px;">
+			<ul class="ul-disc">
 				<li><?php esc_html_e( 'Live USPS API rates at checkout', 'wtc-shipping' ); ?></li>
 				<li><?php esc_html_e( 'Print shipping labels directly from WooCommerce', 'wtc-shipping' ); ?></li>
 				<li><?php esc_html_e( 'Customer tracking notifications', 'wtc-shipping' ); ?></li>
@@ -129,7 +129,7 @@ function wtcc_shipping_dashboard() {
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ); ?>" class="button button-primary">
 					<?php esc_html_e( 'Activate License', 'wtc-shipping' ); ?>
 				</a>
-				<a href="https://inkfinit.pro/plugins/usps-shipping/" target="_blank" class="button button-secondary" style="margin-left: 10px;">
+				<a href="https://inkfinit.pro/plugins/usps-shipping/" target="_blank" class="button button-secondary">
 					<?php esc_html_e( 'Get Pro License', 'wtc-shipping' ); ?>
 				</a>
 			</p>
@@ -137,7 +137,7 @@ function wtcc_shipping_dashboard() {
 
 		<div id="dashboard-widgets-wrap">
 			<div id="dashboard-widgets" class="metabox-holder">
-				<div id="postbox-container-1" class="postbox-container" style="width: 100%;">
+				<div id="postbox-container-1" class="postbox-container">
 					<div class="meta-box-sortables">
 						<!-- Calculator Card -->
 						<div class="postbox">
@@ -146,7 +146,7 @@ function wtcc_shipping_dashboard() {
 								<p><?php esc_html_e( 'Use the built-in rate calculator to estimate USPS shipping costs for any package.', 'wtc-shipping' ); ?></p>
 								<p>
 									<a href="<?php echo esc_url( admin_url( 'admin.php?page=wtc-simple-calculator' ) ); ?>" class="button button-primary button-hero">
-										<span class="dashicons dashicons-calculator" style="margin-top: 5px;"></span> <?php esc_html_e( 'Open Calculator', 'wtc-shipping' ); ?>
+										<span class="dashicons dashicons-calculator"></span> <?php esc_html_e( 'Open Calculator', 'wtc-shipping' ); ?>
 									</a>
 								</p>
 							</div>
@@ -157,27 +157,27 @@ function wtcc_shipping_dashboard() {
 							<h2 class="hndle"><?php echo wtcc_section_heading( __( '✅ Free Edition Features', 'wtc-shipping' ) ); ?></h2>
 							<div class="inside">
 								<ul class="wtcc-stats-list">
-									<li><span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span> <?php esc_html_e( 'USPS Rate Calculator', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span> <?php esc_html_e( 'Ground Advantage, Priority Mail, Express estimates', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span> <?php esc_html_e( 'Zone-based pricing', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span> <?php esc_html_e( 'User Guide', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'USPS Rate Calculator', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Ground Advantage, Priority Mail, Express estimates', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'Zone-based pricing', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e( 'User Guide', 'wtc-shipping' ); ?></li>
 								</ul>
 							</div>
 						</div>
 
 						<!-- Locked Features -->
-						<div class="postbox" style="opacity: 0.7;">
-							<h2 class="hndle"><?php echo wtcc_section_heading( __( '🔒 Pro Features (Locked)', 'wtc-shipping' ) ); ?></h2>
+						<div class="postbox">
+							<h2 class="hndle"><?php echo wtcc_section_heading( __( 'Pro Features (Locked)', 'wtc-shipping' ) ); ?></h2>
 							<div class="inside">
 								<ul class="wtcc-stats-list">
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'USPS API Integration', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'Live Rates at Checkout', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'Label Printing', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'Package Tracking', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'Box Inventory', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'Shipping Presets', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'Flat Rate Boxes', 'wtc-shipping' ); ?></li>
-									<li><span class="dashicons dashicons-lock" style="color: #b32d2e;"></span> <?php esc_html_e( 'Diagnostics', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'USPS API Integration', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'Live Rates at Checkout', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'Label Printing', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'Package Tracking', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'Box Inventory', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'Shipping Presets', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'Flat Rate Boxes', 'wtc-shipping' ); ?></li>
+									<li><span class="dashicons dashicons-lock"></span> <?php esc_html_e( 'Diagnostics', 'wtc-shipping' ); ?></li>
 								</ul>
 								<p>
 									<a href="https://inkfinit.pro/plugins/usps-shipping/" target="_blank" class="button">
@@ -274,14 +274,10 @@ function wtcc_shipping_dashboard() {
 							<h2 class="hndle"><?php echo wtcc_section_heading( __( 'Product Shipping Health', 'wtc-shipping' ) ); ?></h2>
 							<div class="inside">
 								<p><strong><?php esc_html_e( 'Weight Data', 'wtc-shipping' ); ?></strong> &mdash; <?php echo esc_html( $products_with_weight ); ?> / <?php echo esc_html( $products_total ); ?> (<?php echo esc_html( $weight_pct ); ?>%)</p>
-								<div class="progress-bar">
-									<div class="progress-bar-fill <?php echo esc_attr( $weight_class ); ?>" style="width: <?php echo esc_attr( $weight_pct ); ?>%;"></div>
-								</div>
+								<progress class="widefat" value="<?php echo esc_attr( $weight_pct ); ?>" max="100"></progress>
 								<br>
 								<p><strong><?php esc_html_e( 'Dimension Data', 'wtc-shipping' ); ?></strong> &mdash; <?php echo esc_html( $products_with_dimensions ); ?> / <?php echo esc_html( $products_total ); ?> (<?php echo esc_html( $dim_pct ); ?>%)</p>
-								<div class="progress-bar">
-									<div class="progress-bar-fill <?php echo esc_attr( $dim_class ); ?>" style="width: <?php echo esc_attr( $dim_pct ); ?>%;"></div>
-								</div>
+								<progress class="widefat" value="<?php echo esc_attr( $dim_pct ); ?>" max="100"></progress>
 								<?php if ( $weight_pct < 100 || $dim_pct < 100 ) : ?>
 								<p class="description"><span class="dashicons dashicons-info"></span> <?php esc_html_e( 'Complete product data = more accurate USPS rates.', 'wtc-shipping' ); ?></p>
 								<?php endif; ?>
@@ -379,7 +375,7 @@ function wtcc_shipping_diagnostics_page() {
 		?>
 		<div class="wrap">
 			<?php wtcc_admin_header( __( 'Diagnostics', 'wtc-shipping' ) ); ?>
-			<div class="notice notice-info" style="margin-top:15px;">
+			<div class="notice notice-info">
 				<p>
 					<?php esc_html_e( 'The full diagnostics dashboard is available in Inkfinit USPS Shipping Engine Pro.', 'wtc-shipping' ); ?>
 				</p>
@@ -512,7 +508,7 @@ function wtcc_diagnostics_usps_health() {
 				<button type="button" id="wtcc-test-api-btn" class="button button-primary">
 					<?php esc_html_e( 'Test Connection', 'wtc-shipping' ); ?>
 				</button>
-				<span id="wtcc-test-api-status" style="margin-left: 10px;"></span>
+				<span id="wtcc-test-api-status"></span>
 			</p>
 		</div>
 	</div>
@@ -575,9 +571,7 @@ function wtcc_diagnostics_shipping_config() {
 				$enabled_boxes = array_keys( $flat_rate_boxes );
 			}
 			?>
-			<h3 style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #ddd;">
-				<?php esc_html_e( 'USPS Flat Rate Boxes', 'wtc-shipping' ); ?>
-			</h3>
+			<h3><?php esc_html_e( 'USPS Flat Rate Boxes', 'wtc-shipping' ); ?></h3>
 			<table class="wp-list-table widefat striped">
 				<thead>
 					<tr>

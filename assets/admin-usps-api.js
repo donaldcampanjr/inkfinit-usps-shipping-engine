@@ -23,11 +23,11 @@
                     $testBtn.siblings('.notice').remove();
                 },
                 success: function(response) {
-                    var message = '<div class="notice notice-success is-dismissible inline" style="margin-left: 10px;"><p>' + response.message + '</p></div>';
+                    var message = '<div class="notice notice-success is-dismissible inline"><p>' + response.message + '</p></div>';
                     $testBtn.after(message);
                 },
                 error: function(response) {
-                    var message = '<div class="notice notice-error is-dismissible inline" style="margin-left: 10px;"><p>' + response.message + '</p></div>';
+                    var message = '<div class="notice notice-error is-dismissible inline"><p>' + response.message + '</p></div>';
                     $testBtn.after(message);
                 },
                 complete: function() {

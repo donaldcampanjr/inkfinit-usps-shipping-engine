@@ -357,17 +357,17 @@ function wtcc_get_license_expiry_info() {
 }
 
 /**
- * Render a small Pro badge.
+ * Render a small Pro badge using WordPress native admin styles.
  */
 function wtcc_render_pro_badge() {
-	echo '<span class="wtcc-pro-badge" style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:3px;background:#d6336c;color:#fff;font-size:10px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;" role="status" aria-label="Pro feature">Pro</span>';
+	echo '<span class="update-plugins count-1"><span class="plugin-count">Pro</span></span>';
 }
 
 /**
- * Render a small Enterprise badge.
+ * Render a small Enterprise badge using WordPress native admin styles.
  */
 function wtcc_render_enterprise_badge() {
-	echo '<span class="wtcc-enterprise-badge" style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:3px;background:#5c6bc0;color:#fff;font-size:10px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;" role="status" aria-label="Enterprise feature">Enterprise</span>';
+	echo '<span class="update-plugins count-1"><span class="plugin-count">Enterprise</span></span>';
 }
 
 /**

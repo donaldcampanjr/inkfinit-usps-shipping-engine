@@ -154,7 +154,7 @@ function wtcc_render_packing_slips_page() {
 									<?php
 									$meta_data = $item->get_formatted_meta_data( '_', true );
 									if ( ! empty( $meta_data ) ) {
-										echo '<div style="font-size: 11px; color: #666;">';
+										echo '<div>';
 										foreach ( $meta_data as $meta ) {
 											echo '<div>' . wp_kses_post( $meta->display_key . ': ' . wp_strip_all_tags( $meta->display_value ) ) . '</div>';
 										}
@@ -350,7 +350,7 @@ function wtcc_render_packing_slip_settings_page() {
                     <div class="postbox">
                         <h2 class="hndle"><?php echo wtcc_section_heading( __( 'How to Use', 'wtc-shipping' ) ); ?></h2>
                         <div class="inside">
-                            <ol style="padding-left: 20px;">
+                            <ol>
                                 <li>Go to <strong>WooCommerce → Orders</strong></li>
                                 <li>Select one or more orders using checkboxes</li>
                                 <li>Choose <strong>"Print Packing Slips"</strong> from the Bulk Actions dropdown</li>

@@ -837,7 +837,7 @@ function wtcc_display_flat_rate_box_admin( $order ) {
 	}
 	
 	?>
-	<div class="wtcc-flat-rate-box-info" style="margin-top: 15px; padding: 10px; background: #e7f5ff; border-left: 3px solid #0073aa;">
+	<div class="notice notice-info inline">
 		<strong>📦 Flat Rate Box:</strong> <?php echo esc_html( $box['name'] ); ?><br>
 		<small>
 			USPS Code: <?php echo esc_html( $box['usps_code'] ); ?> | 
@@ -856,9 +856,9 @@ function wtcc_add_flat_rate_override_admin( $order ) {
 	$boxes = wtcc_get_flat_rate_boxes();
 	
 	?>
-	<div class="wtcc-flat-rate-override" style="margin-top: 10px;">
+	<div class="wtcc-flat-rate-override">
 		<label for="wtcc_flat_rate_override"><strong>📦 Override Flat Rate Box:</strong></label>
-		<select name="wtcc_flat_rate_override" id="wtcc_flat_rate_override" style="width: 100%; margin-top: 5px;">
+		<select name="wtcc_flat_rate_override" id="wtcc_flat_rate_override" class="widefat">
 			<option value="">— Use calculated/no override —</option>
 			<?php foreach ( $boxes as $key => $box ) : ?>
 				<?php if ( empty( $box['zone_based'] ) ) : ?>
@@ -869,7 +869,7 @@ function wtcc_add_flat_rate_override_admin( $order ) {
 				<?php endif; ?>
 			<?php endforeach; ?>
 		</select>
-		<p class="description" style="margin-top: 5px;">Select a flat rate box to override the calculated shipping for labels.</p>
+		<p class="description">Select a flat rate box to override the calculated shipping for labels.</p>
 	</div>
 	<?php
 }

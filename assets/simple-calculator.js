@@ -102,30 +102,30 @@
                 ? weight.toFixed(2) + ' lb' 
                 : weight.toFixed(1) + ' oz';
             
-            let html = '<div class="wtcc-rate-summary" style="background: #f0f0f1; padding: 12px 15px; border-radius: 4px; margin-bottom: 20px;">';
+            let html = '<div class="wtcc-rate-summary">';
             html += '<strong>Route:</strong> ' + originZip + ' → ' + destZip + ' | ';
             html += '<strong>Weight:</strong> ' + displayWeight;
             html += '</div>';
 
             // Build rate cards
-            html += '<div class="wtcc-rate-cards" style="display: grid; gap: 15px;">';
+            html += '<div class="wtcc-rate-cards">';
             
             rates.forEach(function(rate, index) {
                 const isFirst = index === 0;
-                const borderColor = isFirst ? '#00a32a' : '#c3c4c7';
+                const cardClass = isFirst ? 'wtcc-rate-card wtcc-rate-card--best' : 'wtcc-rate-card';
                 const badge = isFirst 
-                    ? '<span style="background: #00a32a; color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 11px; margin-left: 10px;">BEST VALUE</span>' 
+                    ? '<span class="wtcc-rate-card__badge">BEST VALUE</span>' 
                     : '';
                 
-                html += '<div class="wtcc-rate-card" style="border: 2px solid ' + borderColor + '; border-radius: 6px; padding: 15px; background: #fff;">';
-                html += '<div style="display: flex; justify-content: space-between; align-items: center;">';
+                html += '<div class="' + cardClass + '">';
+                html += '<div class="wtcc-rate-card__layout">';
                 html += '<div>';
-                html += '<span style="font-size: 20px; margin-right: 8px;">' + (rate.icon || '📦') + '</span>';
-                html += '<strong style="font-size: 16px;">' + escapeHtml(rate.name) + '</strong>' + badge;
-                html += '<div style="color: #666; font-size: 13px; margin-top: 4px; margin-left: 32px;">' + escapeHtml(rate.delivery) + '</div>';
+                html += '<span class="wtcc-rate-card__icon">' + (rate.icon || '📦') + '</span>';
+                html += '<strong class="wtcc-rate-card__name">' + escapeHtml(rate.name) + '</strong>' + badge;
+                html += '<div class="wtcc-rate-card__delivery">' + escapeHtml(rate.delivery) + '</div>';
                 html += '</div>';
-                html += '<div style="text-align: right;">';
-                html += '<div style="font-size: 24px; font-weight: 600; color: #1d2327;">$' + rate.cost.toFixed(2) + '</div>';
+                html += '<div class="wtcc-rate-card__price-wrap">';
+                html += '<div class="wtcc-rate-card__price">$' + rate.cost.toFixed(2) + '</div>';
                 html += '</div>';
                 html += '</div>';
                 html += '</div>';

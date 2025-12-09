@@ -135,7 +135,7 @@ function wtcc_shipping_rates_page() {
 												<input type="number" step="0.01" min="0" name="new_rule[cost]" placeholder="0.00" class="small-text">
 											</span>
 
-											<span class="wtc-rule-action-field" id="action-flat-rate-box-field" style="display:none;">
+											<span class="wtc-rule-action-field" id="action-flat-rate-box-field" hidden>
 												<select name="new_rule[flat_rate_box]">
 													<option value=""><?php esc_html_e( 'Select a box...', 'wtc-shipping' ); ?></option>
 													<?php
@@ -271,7 +271,7 @@ function wtcc_shipping_rates_page() {
 														$box_name = wtcc_get_flat_rate_boxes()[ $box_key ]['name'] ?? 'N/A';
 														echo '<em>' . esc_html( $box_name ) . '</em>';
 													} elseif ( $action === 'disable_method' ) {
-														echo '<span style="color:red;">' . esc_html__( 'Disabled', 'wtc-shipping' ) . '</span>';
+														echo '<span class="description">' . esc_html__( 'Disabled', 'wtc-shipping' ) . '</span>';
 													}
 													?>
 												</td>

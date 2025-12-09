@@ -277,11 +277,11 @@ function wtcc_render_preset_editor_page() {
 							<div class="row-actions visible">
 								<span class="edit"><a href="<?php echo esc_url( admin_url( 'admin.php?page=wtc-core-shipping-presets-editor&edit=' . $preset['id'] ) ); ?>"><?php esc_html_e( 'Edit', 'wtc-shipping' ); ?></a> | </span>
 								<span class="trash">
-									<form method="post" class="wtc-shipping-delete-form" style="display:inline;">
+									<form method="post" class="wtc-shipping-delete-form" >
 										<?php wp_nonce_field( 'wtcc_preset_editor_action' ); ?>
 										<input type="hidden" name="wtcc_preset_action" value="delete">
 										<input type="hidden" name="preset_id" value="<?php echo esc_attr( $preset['id'] ); ?>">
-										<button type="submit" class="button-link" style="color:#b32d2e;text-decoration:none;padding:0;cursor:pointer;" onclick="return confirm('<?php esc_attr_e( 'Are you sure you want to delete this preset?', 'wtc-shipping' ); ?>');"><?php esc_html_e( 'Delete', 'wtc-shipping' ); ?></button>
+										<button type="submit" class="button-link button-link-delete" onclick="return confirm('<?php esc_attr_e( 'Are you sure you want to delete this preset?', 'wtc-shipping' ); ?>');"><?php esc_html_e( 'Delete', 'wtc-shipping' ); ?></button>
 									</form>
 								</span>
 							</div>
@@ -295,7 +295,7 @@ function wtcc_render_preset_editor_page() {
 						</td>
 						<td data-colname="<?php esc_attr_e( 'Status', 'wtc-shipping' ); ?>">
 							<?php if ( ! empty( $preset['active'] ) ) : ?>
-								<span style="color: #2271b1;"><?php esc_html_e( 'Active', 'wtc-shipping' ); ?></span>
+								<span><?php esc_html_e( 'Active', 'wtc-shipping' ); ?></span>
 							<?php else : ?>
 								<span><?php esc_html_e( 'Inactive', 'wtc-shipping' ); ?></span>
 							<?php endif; ?>

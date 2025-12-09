@@ -533,3 +533,71 @@
 		font-size: 9px !important;
 	}
 }
+
+/* ==========================================================================
+   Simple Shipping Rate Calculator
+   ========================================================================== */
+
+.wtcc-rate-summary {
+	background: #f0f0f1;
+	padding: 12px 15px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+
+.wtcc-rate-cards {
+	display: grid;
+	gap: 15px;
+}
+
+.wtcc-rate-card {
+	border: 2px solid #c3c4c7;
+	border-radius: 6px;
+	padding: 15px;
+	background: #fff;
+}
+
+.wtcc-rate-card--best {
+	border-color: #00a32a;
+}
+
+.wtcc-rate-card__layout {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.wtcc-rate-card__icon {
+	font-size: 20px;
+	margin-right: 8px;
+}
+
+.wtcc-rate-card__name {
+	font-size: 16px;
+}
+
+.wtcc-rate-card__badge {
+	background: #00a32a;
+	color: #fff;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-size: 11px;
+	margin-left: 10px;
+}
+
+.wtcc-rate-card__delivery {
+	color: #666;
+	font-size: 13px;
+	margin-top: 4px;
+	margin-left: 32px;
+}
+
+.wtcc-rate-card__price-wrap {
+	text-align: right;
+}
+
+.wtcc-rate-card__price {
+	font-size: 24px;
+	font-weight: 600;
+	color: #1d2327;
+}

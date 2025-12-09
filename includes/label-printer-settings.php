@@ -156,16 +156,16 @@ function wtcc_render_label_printer_settings() {
 				</tr>
 			</table>
 			
-			<div class="card" style="margin-top: 20px; max-width: 600px;">
-				<h3 style="margin-top: 0;">🔧 Supported Thermal Printers</h3>
-				<ul style="margin-bottom: 0;">
+			<div class="card">
+				<h3><?php esc_html_e( 'Supported Thermal Printers', 'wtc-shipping' ); ?></h3>
+				<ul class="ul-disc">
 					<li><strong>Zebra:</strong> ZP450, ZP500, ZP505, GK420d (ZPL format)</li>
 					<li><strong>Rollo:</strong> All models (ZPL format)</li>
 					<li><strong>DYMO:</strong> 4XL (PDF or PNG format)</li>
 					<li><strong>Brother:</strong> QL series (PDF format)</li>
 					<li><strong>Generic:</strong> Any thermal printer supporting ZPL or PDF</li>
 				</ul>
-				<p style="margin: 15px 0 0 0;">
+				<p>
 					<em>Note: For best results with thermal printers, use 4"x6" size and ZPL format.</em>
 				</p>
 			</div>
@@ -230,12 +230,12 @@ function wtcc_label_printing_metabox_content( $post_or_order ) {
 	if ( $tracking ) {
 		// Label exists - show details and download options
 		?>
-		<div class="wtcc-label-exists" style="padding: 10px 0;">
-			<p style="margin: 0 0 10px 0; padding: 10px; background: #d1fae5; border-left: 3px solid #10b981; border-radius: 4px;">
-				<strong style="color: #065f46;">✓ Label Created</strong>
+		<div class="wtcc-label-exists">
+			<p>
+				<strong><?php esc_html_e( 'Label Created', 'wtc-shipping' ); ?></strong>
 			</p>
 			
-			<p style="margin: 8px 0;">
+			<p>
 				<strong><?php esc_html_e( 'Tracking:', 'wtc-shipping' ); ?></strong><br>
 				<a href="https://tools.usps.com/go/TrackConfirmAction?tLabels=<?php echo esc_attr( $tracking ); ?>" target="_blank">
 					<?php echo esc_html( $tracking ); ?>
@@ -243,42 +243,40 @@ function wtcc_label_printing_metabox_content( $post_or_order ) {
 			</p>
 			
 			<?php if ( $postage ) : ?>
-			<p style="margin: 8px 0;">
+			<p>
 				<strong><?php esc_html_e( 'Postage:', 'wtc-shipping' ); ?></strong>
 				$<?php echo esc_html( number_format( $postage, 2 ) ); ?>
 			</p>
 			<?php endif; ?>
 			
 			<?php if ( $label_format && $label_size ) : ?>
-			<p style="margin: 8px 0; font-size: 12px; color: #64748b;">
+			<p>
 				<?php echo esc_html( $label_format . ' | ' . $label_size ); ?>
 			</p>
 			<?php endif; ?>
 			
 			<?php if ( $label_created ) : ?>
-			<p style="margin: 8px 0; font-size: 12px; color: #64748b;">
+			<p>
 				<?php echo esc_html( human_time_diff( strtotime( $label_created ), current_time( 'timestamp' ) ) . ' ago' ); ?>
 			</p>
 			<?php endif; ?>
 			
-			<p style="margin: 15px 0 0 0;">
+			<p>
 				<a href="<?php echo esc_url( wtcc_get_label_download_url( $order->get_id() ) ); ?>" 
-				   class="button button-primary" 
-				   style="width: 100%; text-align: center; margin-bottom: 8px;">
+				   class="button button-primary">
 					<?php esc_html_e( '⬇ Download Label', 'wtc-shipping' ); ?>
 				</a>
 				
 				<button type="button" 
 				        class="button wtcc-print-label-btn" 
-				        data-order="<?php echo esc_attr( $order->get_id() ); ?>"
-				        style="width: 100%; margin-bottom: 8px;">
+				        data-order="<?php echo esc_attr( $order->get_id() ); ?>">
 					<?php esc_html_e( '🖨️ Print Label', 'wtc-shipping' ); ?>
 				</button>
 				
 				<button type="button" 
 				        class="button wtcc-recreate-label-btn" 
 				        data-order="<?php echo esc_attr( $order->get_id() ); ?>"
-				        style="width: 100%;">
+				       >
 					<?php esc_html_e( '🔄 Re-create Label', 'wtc-shipping' ); ?>
 				</button>
 			</p>
@@ -291,16 +289,16 @@ function wtcc_label_printing_metabox_content( $post_or_order ) {
 		$default_size = get_option( 'wtcc_label_size', '4X6' );
 		$formats = wtcc_get_available_label_formats();
 		?>
-		<div class="wtcc-create-label" style="padding: 10px 0;">
-			<p style="margin: 0 0 15px 0;">
+		<div class="wtcc-create-label">
+			<p>
 				<?php esc_html_e( 'No label created yet. Configure options and create label for this order.', 'wtc-shipping' ); ?>
 			</p>
 			
-			<p style="margin: 8px 0;">
-				<label for="wtcc_label_format_select" style="font-weight: 600; display: block; margin-bottom: 4px;">
-					<?php esc_html_e( 'Format:', 'wtc-shipping' ); ?>
+			<p>
+				<label for="wtcc_label_format_select">
+					<strong><?php esc_html_e( 'Format:', 'wtc-shipping' ); ?></strong>
 				</label>
-				<select id="wtcc_label_format_select" name="wtcc_label_format_select" style="width: 100%;">
+				<select id="wtcc_label_format_select" name="wtcc_label_format_select">
 					<?php foreach ( $formats['formats'] as $format_key => $format_data ) : ?>
 						<option value="<?php echo esc_attr( $format_key ); ?>" <?php selected( $default_format, $format_key ); ?>>
 							<?php echo esc_html( $format_data['name'] ); ?>
@@ -309,11 +307,11 @@ function wtcc_label_printing_metabox_content( $post_or_order ) {
 				</select>
 			</p>
 			
-			<p style="margin: 8px 0;">
-				<label for="wtcc_label_size_select" style="font-weight: 600; display: block; margin-bottom: 4px;">
-					<?php esc_html_e( 'Size:', 'wtc-shipping' ); ?>
+			<p>
+				<label for="wtcc_label_size_select">
+					<strong><?php esc_html_e( 'Size:', 'wtc-shipping' ); ?></strong>
 				</label>
-				<select id="wtcc_label_size_select" name="wtcc_label_size_select" style="width: 100%;">
+				<select id="wtcc_label_size_select" name="wtcc_label_size_select">
 					<?php foreach ( $formats['sizes'] as $size_key => $size_data ) : ?>
 						<option value="<?php echo esc_attr( $size_key ); ?>" <?php selected( $default_size, $size_key ); ?>>
 							<?php echo esc_html( $size_data['name'] ); ?>
@@ -322,23 +320,23 @@ function wtcc_label_printing_metabox_content( $post_or_order ) {
 				</select>
 			</p>
 			
-			<p style="margin: 15px 0 0 0;">
+			<p>
 				<button type="button" 
 				        class="button button-primary wtcc-create-label-btn" 
 				        data-order="<?php echo esc_attr( $order->get_id() ); ?>"
-				        style="width: 100%;">
-					<?php esc_html_e( '🏷️ Create Shipping Label', 'wtc-shipping' ); ?>
+				       >
+					<?php esc_html_e( 'Create Shipping Label', 'wtc-shipping' ); ?>
 				</button>
 			</p>
-			
-			<div class="wtcc-label-info-box" style="margin-top: 15px; padding: 10px; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 4px; font-size: 12px;">
-				<strong><?php esc_html_e( 'Your Settings:', 'wtc-shipping' ); ?></strong><br>
+
+			<div class="notice notice-info inline">
+				<p><strong><?php esc_html_e( 'Your Settings:', 'wtc-shipping' ); ?></strong>
 				<?php
 				printf(
 					esc_html__( 'Printer: %s', 'wtc-shipping' ),
 					'thermal' === $printer_type ? esc_html__( 'Thermal', 'wtc-shipping' ) : esc_html__( 'Regular', 'wtc-shipping' )
 				);
-				?>
+				?></p>
 			</div>
 		</div>
 		

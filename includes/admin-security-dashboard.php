@@ -39,7 +39,7 @@ function wtcc_shipping_render_security_dashboard() {
 		?>
 		<div class="wrap">
 			<?php wtcc_admin_header( __( 'Security Dashboard', 'wtc-shipping' ) ); ?>
-			<div class="notice notice-info" style="margin-top:15px;">
+			<div class="notice notice-info">
 				<p>
 					<?php esc_html_e( 'The full security dashboard (test log integration and vulnerability checks) is available in Inkfinit USPS Shipping Engine Pro.', 'wtc-shipping' ); ?>
 				</p>

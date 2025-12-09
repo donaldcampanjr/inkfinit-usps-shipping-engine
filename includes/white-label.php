@@ -158,8 +158,8 @@ function wtcc_render_white_label_settings() {
 	// Check tier.
 	if ( ! wtcc_is_premium() ) {
 		?>
-		<div class="wtcc-white-label-locked" style="padding:20px;background:#f0f0f1;border-left:4px solid #d6336c;margin:20px 0;">
-			<h3 style="margin:0 0 10px;">
+		<div class="wtcc-white-label-locked">
+			<h3>
 				<?php esc_html_e( 'White-Label Mode', 'wtc-shipping' ); ?>
 				<?php wtcc_render_premium_badge(); ?>
 			</h3>
@@ -176,16 +176,16 @@ function wtcc_render_white_label_settings() {
 	$enabled  = get_option( 'wtcc_white_label_enabled', false );
 
 	?>
-	<div class="wtcc-white-label-settings" style="margin:20px 0;">
+	<div class="wtcc-white-label-settings">
 		<h3>
 			<?php esc_html_e( 'White-Label Mode', 'wtc-shipping' ); ?>
 			<?php if ( $enabled ) : ?>
-				<span style="background:#28a745;color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;margin-left:5px;"><?php esc_html_e( 'Active', 'wtc-shipping' ); ?></span>
+				<span class="update-plugins count-1"><span class="plugin-count"><?php esc_html_e( 'Active', 'wtc-shipping' ); ?></span></span>
 			<?php endif; ?>
 		</h3>
 		<p class="description"><?php esc_html_e( 'Customize the plugin branding for your clients. When enabled, Inkfinit branding will be hidden throughout the admin interface.', 'wtc-shipping' ); ?></p>
 
-		<form method="post" action="options.php" style="margin-top:15px;">
+		<form method="post" action="options.php">
 			<?php settings_fields( 'wtcc_white_label_group' ); ?>
 
 			<table class="form-table" role="presentation">
@@ -241,8 +241,8 @@ function wtcc_render_white_label_settings() {
 						<input type="url" id="wtcc_logo_url" name="wtcc_white_label_settings[logo_url]" value="<?php echo esc_url( $settings['logo_url'] ); ?>" class="regular-text" placeholder="https://youragency.com/logo.png" />
 						<p class="description"><?php esc_html_e( 'URL to your logo (recommended: 200x50px).', 'wtc-shipping' ); ?></p>
 						<?php if ( ! empty( $settings['logo_url'] ) ) : ?>
-							<div style="margin-top:10px;padding:10px;background:#f9f9f9;border-radius:4px;display:inline-block;">
-								<img src="<?php echo esc_url( $settings['logo_url'] ); ?>" alt="<?php esc_attr_e( 'Logo preview', 'wtc-shipping' ); ?>" style="max-height:50px;max-width:200px;" />
+							<div class="card">
+								<img src="<?php echo esc_url( $settings['logo_url'] ); ?>" alt="<?php esc_attr_e( 'Logo preview', 'wtc-shipping' ); ?>" />
 							</div>
 						<?php endif; ?>
 					</td>
@@ -253,7 +253,7 @@ function wtcc_render_white_label_settings() {
 					</th>
 					<td>
 						<input type="color" id="wtcc_primary_color" name="wtcc_white_label_settings[primary_color]" value="<?php echo esc_attr( $settings['primary_color'] ); ?>" />
-						<span style="margin-left:10px;color:#666;"><?php echo esc_html( $settings['primary_color'] ); ?></span>
+						<code><?php echo esc_html( $settings['primary_color'] ); ?></code>
 						<p class="description"><?php esc_html_e( 'Accent color for buttons and highlights.', 'wtc-shipping' ); ?></p>
 					</td>
 				</tr>
@@ -263,13 +263,13 @@ function wtcc_render_white_label_settings() {
 		</form>
 
 		<?php if ( $enabled ) : ?>
-			<div class="wtcc-white-label-preview" style="margin-top:20px;padding:20px;background:#f9f9f9;border:1px solid #c3c4c7;border-radius:4px;">
-				<h4 style="margin:0 0 15px;"><?php esc_html_e( 'Preview', 'wtc-shipping' ); ?></h4>
+			<div class="card">
+				<h4><?php esc_html_e( 'Preview', 'wtc-shipping' ); ?></h4>
 				<p><strong><?php esc_html_e( 'Plugin Name:', 'wtc-shipping' ); ?></strong> <?php echo esc_html( wtcc_get_plugin_display_name() ); ?></p>
 				<p><strong><?php esc_html_e( 'Company:', 'wtc-shipping' ); ?></strong> <?php echo esc_html( wtcc_get_company_name() ); ?></p>
 				<?php if ( ! empty( $settings['logo_url'] ) ) : ?>
 					<p><strong><?php esc_html_e( 'Logo:', 'wtc-shipping' ); ?></strong></p>
-					<img src="<?php echo esc_url( $settings['logo_url'] ); ?>" alt="" style="max-height:40px;margin-left:10px;" />
+					<img src="<?php echo esc_url( $settings['logo_url'] ); ?>" alt="" />
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
@@ -387,7 +387,7 @@ function wtcc_render_white_label_page() {
 				<div id="post-body-content">
 					<div class="postbox">
 						<h2 class="hndle">
-							<span class="dashicons dashicons-art" style="margin-right:8px;"></span>
+							<span class="dashicons dashicons-art"></span>
 							<?php esc_html_e( 'White-Label Branding', 'wtc-shipping' ); ?>
 						</h2>
 						<div class="inside">

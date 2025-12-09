@@ -224,14 +224,12 @@ function wtcc_render_debug_export_button() {
 
 	$nonce = wp_create_nonce( 'wtcc_debug_export_nonce' );
 	?>
-	<div class="wtcc-debug-export" style="margin:20px 0;">
+	<div class="wtcc-debug-export">
 		<button type="button" id="wtcc-export-debug" class="button button-secondary" data-nonce="<?php echo esc_attr( $nonce ); ?>">
-			<span class="dashicons dashicons-download" style="vertical-align:middle;margin-right:5px;" aria-hidden="true"></span>
+			<span class="dashicons dashicons-download" aria-hidden="true"></span>
 			<?php esc_html_e( 'Export Debug Info', 'wtc-shipping' ); ?>
 		</button>
-		<span class="description" style="margin-left:10px;">
-			<?php esc_html_e( 'Download system info for support troubleshooting.', 'wtc-shipping' ); ?>
-		</span>
+		<p class="description"><?php esc_html_e( 'Download system info for support troubleshooting.', 'wtc-shipping' ); ?></p>
 	</div>
 	<script>
 	jQuery(document).ready(function($) {
@@ -252,7 +250,7 @@ function wtcc_render_debug_export_button() {
 				} else {
 					alert('<?php echo esc_js( __( 'Failed to generate debug info.', 'wtc-shipping' ) ); ?>');
 				}
-				btn.prop('disabled', false).html('<span class="dashicons dashicons-download" style="vertical-align:middle;margin-right:5px;"></span><?php echo esc_js( __( 'Export Debug Info', 'wtc-shipping' ) ); ?>');
+				btn.prop('disabled', false).html('<span class="dashicons dashicons-download"></span><?php echo esc_js( __( 'Export Debug Info', 'wtc-shipping' ) ); ?>');
 			});
 		});
 	});

@@ -51,25 +51,21 @@ function wtcc_add_plugin_action_links( $links ) {
 	
 	switch ( $edition ) {
 		case 'enterprise':
-			// Top tier - show green active status
-			$custom_links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ) . '" style="color:#00a32a;font-weight:bold;">Enterprise ✓</a>';
+			$custom_links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ) . '"><strong>Enterprise ✓</strong></a>';
 			break;
 			
 		case 'premium':
-			// Premium - show active + promote Enterprise
-			$custom_links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ) . '" style="color:#00a32a;font-weight:bold;">Premium ✓</a>';
-			$custom_links[] = '<a href="' . esc_url( WTCC_UPGRADE_URL ) . '" target="_blank" rel="noopener noreferrer" style="color:#d63638;font-weight:bold;">' . esc_html__( 'Get Enterprise', 'wtc-shipping' ) . '</a>';
+			$custom_links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ) . '"><strong>Premium ✓</strong></a>';
+			$custom_links[] = '<a href="' . esc_url( WTCC_UPGRADE_URL ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Get Enterprise', 'wtc-shipping' ) . '</a>';
 			break;
 			
 		case 'pro':
-			// Pro - show active + promote Premium
-			$custom_links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ) . '" style="color:#00a32a;font-weight:bold;">Pro ✓</a>';
-			$custom_links[] = '<a href="' . esc_url( WTCC_UPGRADE_URL ) . '" target="_blank" rel="noopener noreferrer" style="color:#d63638;font-weight:bold;">' . esc_html__( 'Get Premium', 'wtc-shipping' ) . '</a>';
+			$custom_links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ) . '"><strong>Pro ✓</strong></a>';
+			$custom_links[] = '<a href="' . esc_url( WTCC_UPGRADE_URL ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Get Premium', 'wtc-shipping' ) . '</a>';
 			break;
 			
 		default:
-			// Free - promote Pro
-			$custom_links[] = '<a href="' . esc_url( WTCC_UPGRADE_URL ) . '" target="_blank" rel="noopener noreferrer" style="color:#d63638;font-weight:bold;">' . esc_html__( 'Get PRO', 'wtc-shipping' ) . '</a>';
+			$custom_links[] = '<a href="' . esc_url( WTCC_UPGRADE_URL ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Get PRO', 'wtc-shipping' ) . '</a>';
 			break;
 	}
 
@@ -189,13 +185,13 @@ function wtcc_add_footer_links() {
 	jQuery(document).ready(function($) {
 		if ($('#wtcc-admin-footer-links').length === 0) {
 			$('body.woocommerce_page_inkfinit-shipping-features .wrap, body.woocommerce_page_inkfinit-shipping-presets .wrap, body.woocommerce_page_inkfinit-shipping-rates .wrap, body.woocommerce_page_inkfinit-shipping-license .wrap').append(
-				'<div id="wtcc-admin-footer-links" style="margin-top:30px;padding:20px;background:#f9f9f9;border-radius:4px;border:1px solid #ddd;">' +
-				'<h4 style="margin:0 0 10px;"><?php echo esc_js( __( 'Need Help?', 'wtc-shipping' ) ); ?></h4>' +
-				'<div style="display:flex;gap:20px;flex-wrap:wrap;">' +
-				'<a href="<?php echo esc_url( WTCC_DOCS_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button"><span class="dashicons dashicons-book" style="vertical-align:middle;margin-right:5px;"></span><?php echo esc_js( __( 'Documentation', 'wtc-shipping' ) ); ?></a>' +
-				'<a href="<?php echo esc_url( WTCC_SUPPORT_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button"><span class="dashicons dashicons-editor-help" style="vertical-align:middle;margin-right:5px;"></span><?php echo esc_js( __( 'Get Support', 'wtc-shipping' ) ); ?></a>' +
-				'<a href="<?php echo esc_url( admin_url( 'admin.php?page=inkfinit-shipping-features&tab=diagnostics' ) ); ?>" class="button"><span class="dashicons dashicons-sos" style="vertical-align:middle;margin-right:5px;"></span><?php echo esc_js( __( 'Diagnostics', 'wtc-shipping' ) ); ?></a>' +
-				'</div>' +
+				'<div id="wtcc-admin-footer-links" class="card">' +
+				'<h4><?php echo esc_js( __( 'Need Help?', 'wtc-shipping' ) ); ?></h4>' +
+				'<p>' +
+				'<a href="<?php echo esc_url( WTCC_DOCS_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button"><span class="dashicons dashicons-book"></span> <?php echo esc_js( __( 'Documentation', 'wtc-shipping' ) ); ?></a> ' +
+				'<a href="<?php echo esc_url( WTCC_SUPPORT_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button"><span class="dashicons dashicons-editor-help"></span> <?php echo esc_js( __( 'Get Support', 'wtc-shipping' ) ); ?></a> ' +
+				'<a href="<?php echo esc_url( admin_url( 'admin.php?page=inkfinit-shipping-features&tab=diagnostics' ) ); ?>" class="button"><span class="dashicons dashicons-sos"></span> <?php echo esc_js( __( 'Diagnostics', 'wtc-shipping' ) ); ?></a>' +
+				'</p>' +
 				'</div>'
 			);
 		}
@@ -209,36 +205,33 @@ function wtcc_add_footer_links() {
  */
 function wtcc_render_support_card() {
 	?>
-	<div class="wtcc-support-card" style="background:#fff;padding:20px;border:1px solid #c3c4c7;border-radius:4px;margin:20px 0;">
-		<h3 style="margin:0 0 15px;display:flex;align-items:center;">
-			<span class="dashicons dashicons-sos" style="margin-right:10px;color:#2271b1;" aria-hidden="true"></span>
-			<?php esc_html_e( 'Quick Links', 'wtc-shipping' ); ?>
-		</h3>
-		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
-			<a href="<?php echo esc_url( WTCC_DOCS_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;">
-				<span class="dashicons dashicons-book" aria-hidden="true"></span>
-				<?php esc_html_e( 'Documentation', 'wtc-shipping' ); ?>
+	<div class="card">
+		<h3><span class="dashicons dashicons-sos"></span> <?php esc_html_e( 'Quick Links', 'wtc-shipping' ); ?></h3>
+		<p>
+			<a href="<?php echo esc_url( WTCC_DOCS_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button">
+				<span class="dashicons dashicons-book"></span> <?php esc_html_e( 'Documentation', 'wtc-shipping' ); ?>
 			</a>
-			<a href="<?php echo esc_url( WTCC_SUPPORT_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;">
-				<span class="dashicons dashicons-editor-help" aria-hidden="true"></span>
-				<?php esc_html_e( 'Get Support', 'wtc-shipping' ); ?>
+			<a href="<?php echo esc_url( WTCC_SUPPORT_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button">
+				<span class="dashicons dashicons-editor-help"></span> <?php esc_html_e( 'Get Support', 'wtc-shipping' ); ?>
 			</a>
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=inkfinit-shipping-features&tab=diagnostics' ) ); ?>" class="button" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;">
-				<span class="dashicons dashicons-sos" aria-hidden="true"></span>
-				<?php esc_html_e( 'Run Diagnostics', 'wtc-shipping' ); ?>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=inkfinit-shipping-features&tab=diagnostics' ) ); ?>" class="button">
+				<span class="dashicons dashicons-sos"></span> <?php esc_html_e( 'Run Diagnostics', 'wtc-shipping' ); ?>
 			</a>
-			<a href="<?php echo esc_url( WTCC_CHANGELOG_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;">
-				<span class="dashicons dashicons-list-view" aria-hidden="true"></span>
-				<?php esc_html_e( 'Changelog', 'wtc-shipping' ); ?>
+			<a href="<?php echo esc_url( WTCC_CHANGELOG_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button">
+				<span class="dashicons dashicons-list-view"></span> <?php esc_html_e( 'Changelog', 'wtc-shipping' ); ?>
 			</a>
-		</div>
+		</p>
 		<?php if ( ! wtcc_is_pro() ) : ?>
-		<div style="margin-top:15px;padding:15px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:4px;color:#fff;">
-			<strong><?php esc_html_e( 'Unlock All Features', 'wtc-shipping' ); ?></strong>
-			<p style="margin:5px 0 10px;opacity:0.9;"><?php esc_html_e( 'Get label printing, pickup scheduling, and priority support.', 'wtc-shipping' ); ?></p>
-			<a href="<?php echo esc_url( WTCC_UPGRADE_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button" style="background:#fff;color:#764ba2;border:none;">
-				<?php esc_html_e( 'Go Pro →', 'wtc-shipping' ); ?>
-			</a>
+		<div class="notice notice-info inline">
+			<p>
+				<strong><?php esc_html_e( 'Unlock All Features', 'wtc-shipping' ); ?></strong><br>
+				<?php esc_html_e( 'Get label printing, pickup scheduling, and priority support.', 'wtc-shipping' ); ?>
+			</p>
+			<p>
+				<a href="<?php echo esc_url( WTCC_UPGRADE_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button button-primary">
+					<?php esc_html_e( 'Go Pro →', 'wtc-shipping' ); ?>
+				</a>
+			</p>
 		</div>
 		<?php endif; ?>
 	</div>

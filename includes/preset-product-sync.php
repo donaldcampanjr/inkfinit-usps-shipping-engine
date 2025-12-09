@@ -242,9 +242,9 @@ function wtcc_display_applied_preset_info() {
 			$source_label = wtcc_get_preset_source_label( $preset_source );
 			
 			echo '<div class="options_group">';
-			echo '<div style="padding: 12px; background-color: #f0f6fc; border: 1px solid #00a32a; border-radius: 4px; margin-bottom: 12px;">';
-			echo '<p style="margin: 0 0 8px 0; color: #00a32a;"><strong>✓ Preset Applied:</strong> ' . esc_html( $preset['class_label'] ?? $preset_key ) . '</p>';
-			echo '<small style="color: #666; display: block; line-height: 1.6;">';
+			echo '<div>';
+			echo '<p><strong>✓ Preset Applied:</strong> ' . esc_html( $preset['class_label'] ?? $preset_key ) . '</p>';
+			echo '<small class="description">';
 			
 			echo 'Weight: <strong>' . esc_html( $preset['weight'] . ' ' . $preset['unit'] ) . '</strong><br>';
 			
@@ -257,7 +257,7 @@ function wtcc_display_applied_preset_info() {
 			}
 			
 			if ( $source_label ) {
-				echo '<br><span style="color: #999; font-size: 11px;">Source: ' . esc_html( $source_label ) . '</span>';
+				echo '<br><span class="description">Source: ' . esc_html( $source_label ) . '</span>';
 			}
 			
 			echo '</small>';

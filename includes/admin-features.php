@@ -51,7 +51,7 @@ function wtc_bulk_preset_notice() {
 	$count = intval( $_REQUEST['wtc_bulk_preset_assigned'] );
 	?>
 	<div class="notice notice-success is-dismissible">
-		<p><span class="dashicons dashicons-yes" style="color: #00a32a;"></span> WTC Preset assigned to <?php echo esc_html( $count ); ?> products.</p>
+		<p><span class="dashicons dashicons-yes"></span> WTC Preset assigned to <?php echo esc_html( $count ); ?> products.</p>
 	</div>
 	<?php
 }
@@ -74,9 +74,7 @@ function wtc_bulk_preset_form() {
 		// Add preset select to bulk actions
 		const presetDiv = document.createElement('div');
 		presetDiv.id = 'wtc_bulk_preset_div';
-		presetDiv.style.display = 'none';
-		presetDiv.style.marginLeft = '10px';
-		presetDiv.style.marginRight = '10px';
+		presetDiv.hidden = true;
 		presetDiv.innerHTML = `
 			<select name="wtc_bulk_preset" id="wtc_bulk_preset">
 				<option value="">-- Select Preset --</option>
@@ -89,7 +87,7 @@ function wtc_bulk_preset_form() {
 
 		// Show/hide preset select when bulk action changes
 		bulkSelect.addEventListener('change', function() {
-			presetDiv.style.display = this.value === 'wtc_bulk_assign_preset' ? 'inline-block' : 'none';
+			presetDiv.hidden = this.value !== 'wtc_bulk_assign_preset';
 		});
 	})();
 	</script>
@@ -210,7 +208,7 @@ function wtcc_shipping_admin_history_page() {
 						<?php
 						$history = wtcc_shipping_get_history( 200 );
 						if ( empty( $history ) ) {
-							echo '<tr><td colspan="6" style="text-align: center; padding: 20px;">No shipping history yet. Complete an order to see data.</td></tr>';
+							echo '<tr><td colspan="6">No shipping history yet. Complete an order to see data.</td></tr>';
 						} else {
 							foreach ( $history as $entry ) {
 								echo '<tr>';

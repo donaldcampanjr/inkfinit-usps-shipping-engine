@@ -52,7 +52,7 @@ function wtcc_render_presets_in_shipping_settings() {
 				<?php endforeach; ?>
 			</tbody>
 		</table>
-		<p style="margin-top: 1em;">
+		<p>
 			<a href="<?php echo esc_url( admin_url( 'admin.php?page=wtc-core-shipping-presets' ) ); ?>" class="button button-primary">Manage Presets</a>
 		</p>
 	</div>
@@ -78,7 +78,7 @@ function wtcc_add_presets_field_to_shipping_settings( $settings ) {
 add_action( 'woocommerce_shipping_classes_settings_top', 'wtcc_shipping_presets_link_in_wc' );
 function wtcc_shipping_presets_link_in_wc() {
 	?>
-	<div class="notice notice-info inline" style="margin: 20px 0;">
+	<div class="notice notice-info inline">
 		<p><strong>💡 Tip:</strong> Use <a href="<?php echo esc_url( admin_url( 'admin.php?page=wtc-core-shipping-presets' ) ); ?>">Shipping Presets</a> to define weight, dimensions, and rates for product groups. Then assign presets to products for instant shipping calculations.</p>
 	</div>
 	<?php
@@ -99,7 +99,7 @@ function wtcc_show_preset_on_product_edit() {
 		if ( isset( $all[ $preset ] ) ) {
 			$preset_data = $all[ $preset ];
 			?>
-			<div class="notice notice-success inline" style="margin: 15px 0;">
+			<div class="notice notice-success inline">
 				<p>
 					<strong>Preset:</strong> <?php echo esc_html( $preset_data['label'] ?? $preset ); ?><br>
 					Weight: <?php echo esc_html( $preset_data['weight'] ?? 0 ); ?> <?php echo esc_html( $preset_data['unit'] ?? 'oz' ); ?> |

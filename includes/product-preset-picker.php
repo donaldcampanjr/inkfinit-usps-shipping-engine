@@ -16,34 +16,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'woocommerce_product_data_panels', 'wtcc_render_preset_selector_panel' );
 function wtcc_render_preset_selector_panel() {
 	global $post;
-	$product_id = $post->ID;
+	$product_id     = $post->ID;
 	$current_preset = get_post_meta( $product_id, '_wtc_preset', true );
-	$presets = wtcc_shipping_get_presets();
+	$presets        = wtcc_shipping_get_presets();
 	$custom_presets = wtcc_shipping_get_custom_presets();
-	$all_presets = array_merge( $presets, $custom_presets );
-	
-	// Get current product data for display
-	$product = wc_get_product( $product_id );
+	$all_presets    = array_merge( $presets, $custom_presets );
+
+	$product  = wc_get_product( $product_id );
 	$has_data = $product && $product->get_weight() && $product->get_length() && $product->get_width() && $product->get_height();
 	?>
 	<div id="wtcc_preset_panel" class="panel woocommerce_options_panel">
-		
-		<!-- Quick Start Instructions -->
-		<div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 4px solid #3b82f6; padding: 15px 20px; margin: 15px 12px;">
-			<h3 style="margin: 0 0 8px 0; font-size: 14px; color: #1e40af;">📦 Quick Setup</h3>
-			<p style="margin: 0; color: #1e40af; font-size: 13px;">
-				Select a preset below to <strong>automatically fill</strong> weight and dimensions. That's it!
-			</p>
+
+		<div class="notice notice-info inline">
+			<p><strong><?php esc_html_e( 'Quick Setup', 'wtc-shipping' ); ?></strong></p>
+			<p><?php esc_html_e( 'Select a preset below to automatically fill weight and dimensions.', 'wtc-shipping' ); ?></p>
 		</div>
-		
+
 		<div class="options_group">
 			<p class="form-field">
-				<label for="wtcc_preset_select" style="font-weight: 600; font-size: 14px;">Select Shipping Preset</label>
-				<select id="wtcc_preset_select" name="wtcc_preset" style="width: 100%; max-width: 400px; padding: 8px; font-size: 14px;">
-					<option value="">-- Choose a preset to auto-fill shipping data --</option>
-					<?php foreach ( $all_presets as $key => $preset ) : 
+				<label for="wtcc_preset_select"><strong><?php esc_html_e( 'Select Shipping Preset', 'wtc-shipping' ); ?></strong></label>
+				<select id="wtcc_preset_select" name="wtcc_preset" class="wc-enhanced-select">
+					<option value=""><?php esc_html_e( '-- Choose a preset to auto-fill shipping data --', 'wtc-shipping' ); ?></option>
+					<?php foreach ( $all_presets as $key => $preset ) :
 						$weight_display = ( $preset['weight'] ?? 0 ) . ' ' . ( $preset['unit'] ?? 'oz' );
-						$dims_display = ( $preset['length'] ?? 0 ) . '×' . ( $preset['width'] ?? 0 ) . '×' . ( $preset['height'] ?? 0 ) . '"';
+						$dims_display   = ( $preset['length'] ?? 0 ) . '×' . ( $preset['width'] ?? 0 ) . '×' . ( $preset['height'] ?? 0 ) . '"';
 					?>
 						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $current_preset, $key ); ?>>
 							<?php echo esc_html( ( $preset['label'] ?? $preset['class_label'] ?? $key ) . ' (' . $weight_display . ') • ' . $dims_display ); ?>
@@ -52,29 +48,29 @@ function wtcc_render_preset_selector_panel() {
 				</select>
 			</p>
 		</div>
-		
-		<!-- Current Status -->
-		<div id="wtcc_preset_status" class="options_group" style="padding: 15px 20px; margin: 0 12px 15px;">
+
+		<div id="wtcc_preset_status" class="options_group">
 			<?php if ( $has_data ) : ?>
-				<div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-left: 4px solid #10b981; padding: 12px 16px; border-radius: 6px;">
-					<span class="dashicons dashicons-yes-alt" style="color: #10b981; font-size: 18px; vertical-align: middle;"></span>
-					<span style="color: #065f46; font-weight: 500; vertical-align: middle;">
-						✓ Shipping data set
+				<div class="notice notice-success inline">
+					<p>
+						<span class="dashicons dashicons-yes-alt"></span>
+						<?php esc_html_e( 'Shipping data set', 'wtc-shipping' ); ?>
 						<?php if ( $current_preset && isset( $all_presets[ $current_preset ] ) ) : ?>
 							(<?php echo esc_html( $all_presets[ $current_preset ]['label'] ?? $current_preset ); ?>)
 						<?php endif; ?>
-					</span>
+					</p>
 				</div>
 			<?php else : ?>
-				<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 6px;">
-					<span class="dashicons dashicons-warning" style="color: #f59e0b; font-size: 18px; vertical-align: middle;"></span>
-					<span style="color: #92400e; vertical-align: middle;">
-						<strong>Action needed:</strong> Select a preset above to set shipping data
-					</span>
+				<div class="notice notice-warning inline">
+					<p>
+						<span class="dashicons dashicons-warning"></span>
+						<strong><?php esc_html_e( 'Action needed:', 'wtc-shipping' ); ?></strong>
+						<?php esc_html_e( 'Select a preset above to set shipping data', 'wtc-shipping' ); ?>
+					</p>
 				</div>
 			<?php endif; ?>
 		</div>
-		
+
 	</div>
 	<?php
 }

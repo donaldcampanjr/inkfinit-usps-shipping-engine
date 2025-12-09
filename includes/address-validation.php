@@ -197,9 +197,9 @@ function wtcc_display_address_suggestion() {
 	}
 	
 	?>
-	<div class="woocommerce-info wtcc-address-suggestion" style="margin-bottom: 20px;">
+	<div class="woocommerce-info wtcc-address-suggestion">
 		<strong><?php _e( 'Address Suggestion:', 'wtc-shipping' ); ?></strong>
-		<p style="margin: 8px 0;">
+		<p>
 			<?php echo esc_html( $suggestion['address1'] ); ?><br>
 			<?php if ( ! empty( $suggestion['address2'] ) ) : ?>
 				<?php echo esc_html( $suggestion['address2'] ); ?><br>
@@ -292,7 +292,7 @@ function wtcc_add_address_validation_button() {
 		<button type="button" class="button" id="wtcc-validate-address-btn">
 			<?php _e( 'Verify Address', 'wtc-shipping' ); ?>
 		</button>
-		<span id="wtcc-validation-result" style="margin-left: 12px;"></span>
+		<span id="wtcc-validation-result"></span>
 	</p>
 	
 	<script>
@@ -302,7 +302,7 @@ function wtcc_add_address_validation_button() {
 			var result = $('#wtcc-validation-result');
 			
 			btn.prop('disabled', true).text('<?php _e( 'Validating...', 'wtc-shipping' ); ?>');
-			result.html('<span class="spinner is-active" style="float: none;"></span>');
+			result.html('<span class="spinner is-active"></span>');
 			
 			$.ajax({
 				url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',
@@ -319,7 +319,7 @@ function wtcc_add_address_validation_button() {
 				success: function(response) {
 					if (response.success) {
 						if (response.data.valid) {
-							result.html('<span style="color: #00a32a;">✓ Address verified</span>');
+							result.html('<span>✓ Address verified</span>');
 							
 							// Show standardized address if different
 							var std = response.data.standardized;
@@ -328,14 +328,14 @@ function wtcc_add_address_validation_button() {
 								result.append('<br><small>' + msg + '</small>');
 							}
 						} else {
-							result.html('<span style="color: #d63638;">⚠ Address could not be verified</span>');
+							result.html('<span>⚠ Address could not be verified</span>');
 						}
 					} else {
-						result.html('<span style="color: #d63638;">Error: ' + response.data.message + '</span>');
+						result.html('<span>Error: ' + response.data.message + '</span>');
 					}
 				},
 				error: function() {
-					result.html('<span style="color: #d63638;">Network error</span>');
+					result.html('<span>Network error</span>');
 				},
 				complete: function() {
 					btn.prop('disabled', false).text('<?php _e( 'Verify Address', 'wtc-shipping' ); ?>');
@@ -366,7 +366,7 @@ function wtcc_render_address_validation_settings() {
 	$realtime = get_option( 'wtcc_address_validation_realtime', 'no' ) === 'yes';
 	$strict = get_option( 'wtcc_address_validation_strict', 'no' ) === 'yes';
 	?>
-	<div class="postbox" style="margin-top: 20px;">
+	<div class="postbox">
 		<div class="postbox-header">
 			<h2>Address Validation</h2>
 		</div>

@@ -161,7 +161,7 @@ function wtcc_shipping_presets_page() {
 
             <h2><?php esc_html_e( 'Base Rates', 'wtc-shipping' ); ?></h2>
             <p class="description"><?php esc_html_e( 'Set the base price and per-ounce cost for each method:', 'wtc-shipping' ); ?></p>
-            <table class="widefat striped" style="max-width: 800px;">
+            <table class="widefat striped">
                 <thead>
                     <tr>
                         <th><?php esc_html_e( 'Method', 'wtc-shipping' ); ?></th>
@@ -204,7 +204,7 @@ function wtcc_shipping_presets_page() {
 
             <h2><?php esc_html_e( 'International Zone Multipliers', 'wtc-shipping' ); ?></h2>
             <p class="description"><?php esc_html_e( 'Adjust rates for international shipping (1.0 = base rate):', 'wtc-shipping' ); ?></p>
-            <table class="widefat striped" style="max-width: 400px;">
+            <table class="widefat striped">
                 <thead>
                     <tr>
                         <th><?php esc_html_e( 'Zone', 'wtc-shipping' ); ?></th>
@@ -245,7 +245,7 @@ function wtcc_shipping_presets_page() {
             if ( $has_presets ) : ?>
             <h2><?php esc_html_e( 'Shipping Class Dimensions', 'wtc-shipping' ); ?></h2>
             <p class="description"><?php esc_html_e( 'Define package dimensions and maximum weight for each shipping class:', 'wtc-shipping' ); ?></p>
-            <table class="widefat striped" style="max-width: 800px;">
+            <table class="widefat striped">
                 <thead>
                     <tr>
                         <th><?php esc_html_e( 'Shipping Class', 'wtc-shipping' ); ?></th>
@@ -303,7 +303,7 @@ function wtcc_shipping_presets_page() {
 
             <h2><?php esc_html_e( 'Custom Labels', 'wtc-shipping' ); ?></h2>
             <p class="description"><?php esc_html_e( 'Customize how shipping options appear at checkout (leave blank for default):', 'wtc-shipping' ); ?></p>
-            <table class="widefat striped" style="max-width: 600px;">
+            <table class="widefat striped">
                 <thead>
                     <tr>
                         <th><?php esc_html_e( 'Method', 'wtc-shipping' ); ?></th>

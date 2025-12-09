@@ -210,10 +210,10 @@ function wtcc_shipping_usps_api_page() {
 		<div class="wrap">
 			<?php wtcc_admin_header(__( 'USPS API Settings', 'wtc-shipping' )); ?>
 			<div class="notice notice-error">
-				<h3 style="margin-top: 0.5em;">🔒 <?php esc_html_e( 'Pro License Required', 'wtc-shipping' ); ?></h3>
+				<h3><?php esc_html_e( 'Pro License Required', 'wtc-shipping' ); ?></h3>
 				<p><?php esc_html_e( 'USPS API credentials and live rate calculations require a Pro, Premium, or Enterprise license.', 'wtc-shipping' ); ?></p>
 				<p><?php esc_html_e( 'With a Pro license, you can:', 'wtc-shipping' ); ?></p>
-				<ul style="list-style: disc; margin-left: 2em;">
+				<ul class="ul-disc">
 					<li><?php esc_html_e( 'Connect directly to USPS Web Tools API', 'wtc-shipping' ); ?></li>
 					<li><?php esc_html_e( 'Get real-time shipping rates at checkout', 'wtc-shipping' ); ?></li>
 					<li><?php esc_html_e( 'Print shipping labels directly from WooCommerce', 'wtc-shipping' ); ?></li>
@@ -224,7 +224,7 @@ function wtcc_shipping_usps_api_page() {
 					<a href="<?php echo esc_url( admin_url( 'admin.php?page=wtc-core-shipping-license' ) ); ?>" class="button button-primary">
 						<?php esc_html_e( 'Activate License', 'wtc-shipping' ); ?>
 					</a>
-					<a href="https://inkfinit.pro/plugins/usps-shipping/" target="_blank" class="button button-secondary" style="margin-left: 10px;">
+					<a href="https://inkfinit.pro/plugins/usps-shipping/" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Get Pro License', 'wtc-shipping' ); ?>
 					</a>
 				</p>

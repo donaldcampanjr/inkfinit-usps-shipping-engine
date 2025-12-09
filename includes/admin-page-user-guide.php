@@ -236,7 +236,7 @@ function wtcc_render_user_guide_page() {
 	<div class="wrap">
 		<?php wtcc_admin_header( __( 'User Guide & Documentation', 'wtc-shipping' ) ); ?>
 		
-		<p class="description" style="margin-top: 15px; margin-bottom: 20px; font-size: 15px; color: #555;">
+		<p class="description">
 			<?php esc_html_e( 'Complete step-by-step instructions for setting up and using all features of Inkfinit USPS Shipping Engine.', 'wtc-shipping' ); ?>
 		</p>
 
@@ -250,8 +250,8 @@ function wtcc_render_user_guide_page() {
 					foreach ( $first_sections as $key => $section ) :
 						?>
 						<div class="postbox">
-							<h2 class="hndle"><span class="dashicons <?php echo esc_attr( $section['icon'] ); ?>" style="margin-right:8px;"></span><?php echo esc_html( $section['title'] ); ?></h2>
-							<div class="inside" style="padding: 20px;">
+							<h2 class="hndle"><span class="dashicons <?php echo esc_attr( $section['icon'] ); ?>"></span><?php echo esc_html( $section['title'] ); ?></h2>
+							<div class="inside">
 								<?php wtcc_render_guide_section( $section['sections'] ); ?>
 							</div>
 						</div>
@@ -268,8 +268,8 @@ function wtcc_render_user_guide_page() {
 						foreach ( $sidebar_sections as $key => $section ) :
 							?>
 							<div class="postbox">
-								<h2 class="hndle"><span class="dashicons <?php echo esc_attr( $section['icon'] ); ?>" style="margin-right:8px;"></span><?php echo esc_html( $section['title'] ); ?></h2>
-								<div class="inside" style="padding: 20px;">
+								<h2 class="hndle"><span class="dashicons <?php echo esc_attr( $section['icon'] ); ?>"></span><?php echo esc_html( $section['title'] ); ?></h2>
+								<div class="inside">
 									<?php wtcc_render_guide_section( $section['sections'] ); ?>
 								</div>
 							</div>
@@ -290,21 +290,21 @@ function wtcc_render_user_guide_page() {
  */
 function wtcc_render_guide_section( $subsections ) {
 	foreach ( $subsections as $subsection ) : ?>
-		<div class="wtc-guide-subsection" style="margin-bottom: 25px;">
-			<h3 style="margin-top: 0; margin-bottom: 10px; font-size: 16px; color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+		<div class="wtc-guide-subsection">
+			<h3>
 				<?php echo esc_html( $subsection['title'] ); ?>
 			</h3>
 
 			<?php if ( ! empty( $subsection['content'] ) ) : ?>
-				<p style="margin: 10px 0; color: #555; line-height: 1.6;">
+				<p>
 					<?php echo wp_kses_post( $subsection['content'] ); ?>
 				</p>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $subsection['steps'] ) ) : ?>
-				<ol class="wtc-guide-steps" style="margin: 12px 0; padding-left: 25px; color: #555;">
+				<ol class="wtc-guide-steps">
 					<?php foreach ( $subsection['steps'] as $step ) : ?>
-						<li style="margin: 6px 0; line-height: 1.5;">
+						<li>
 							<?php echo esc_html( $step ); ?>
 						</li>
 					<?php endforeach; ?>
@@ -312,9 +312,9 @@ function wtcc_render_guide_section( $subsections ) {
 			<?php endif; ?>
 
 			<?php if ( ! empty( $subsection['list'] ) ) : ?>
-				<ul class="wtc-guide-list" style="margin: 12px 0; padding-left: 25px; color: #555;">
+				<ul class="wtc-guide-list">
 					<?php foreach ( $subsection['list'] as $item ) : ?>
-						<li style="margin: 6px 0; line-height: 1.5;">
+						<li>
 							<?php echo esc_html( $item ); ?>
 						</li>
 					<?php endforeach; ?>
@@ -322,8 +322,8 @@ function wtcc_render_guide_section( $subsections ) {
 			<?php endif; ?>
 
 			<?php if ( ! empty( $subsection['tip'] ) ) : ?>
-				<div class="notice notice-info inline" style="background: #fff8e5; border-left: 4px solid #ffb900; padding: 12px; margin: 15px 0;">
-					<p style="margin: 0;"><strong>💡 <?php esc_html_e( 'Pro Tip:', 'wtc-shipping' ); ?></strong> <?php echo esc_html( $subsection['tip'] ); ?></p>
+				<div class="notice notice-warning inline">
+					<p><strong>💡 <?php esc_html_e( 'Pro Tip:', 'wtc-shipping' ); ?></strong> <?php echo esc_html( $subsection['tip'] ); ?></p>
 				</div>
 			<?php endif; ?>
 		</div>

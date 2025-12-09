@@ -94,9 +94,9 @@ function wtcc_shipping_render_box_inventory_page() {
                                         <tr valign="top">
                                             <th scope="row"><?php esc_html_e('Dimensions (L x W x H)', 'wtc-shipping'); ?></th>
                                             <td>
-                                                <input type="number" step="any" min="0" name="box_length" placeholder="<?php esc_attr_e('L', 'wtc-shipping'); ?>" required style="width: 60px;" /> x
-                                                <input type="number" step="any" min="0" name="box_width" placeholder="<?php esc_attr_e('W', 'wtc-shipping'); ?>" required style="width: 60px;" /> x
-                                                <input type="number" step="any" min="0" name="box_height" placeholder="<?php esc_attr_e('H', 'wtc-shipping'); ?>" required style="width: 60px;" />
+                                                <input type="number" step="any" min="0" name="box_length" placeholder="<?php esc_attr_e('L', 'wtc-shipping'); ?>" required class="small-text" /> x
+                                                <input type="number" step="any" min="0" name="box_width" placeholder="<?php esc_attr_e('W', 'wtc-shipping'); ?>" required class="small-text" /> x
+                                                <input type="number" step="any" min="0" name="box_height" placeholder="<?php esc_attr_e('H', 'wtc-shipping'); ?>" required class="small-text" />
                                                 <select name="box_units">
                                                     <option value="in"><?php esc_html_e('in', 'wtc-shipping'); ?></option>
                                                     <option value="cm"><?php esc_html_e('cm', 'wtc-shipping'); ?></option>
@@ -106,7 +106,7 @@ function wtcc_shipping_render_box_inventory_page() {
                                         <tr valign="top">
                                             <th scope="row"><?php esc_html_e('Max Weight', 'wtc-shipping'); ?></th>
                                             <td>
-                                                <input type="number" step="any" min="0" name="box_weight" placeholder="<?php esc_attr_e('Weight', 'wtc-shipping'); ?>" required style="width: 80px;" />
+                                                <input type="number" step="any" min="0" name="box_weight" placeholder="<?php esc_attr_e('Weight', 'wtc-shipping'); ?>" required class="small-text" />
                                                 <select name="box_weight_units">
                                                     <option value="lbs"><?php esc_html_e('lbs', 'wtc-shipping'); ?></option>
                                                     <option value="oz"><?php esc_html_e('oz', 'wtc-shipping'); ?></option>
@@ -147,7 +147,7 @@ function wtcc_shipping_render_box_inventory_page() {
                                         <table class="wp-list-table widefat fixed striped">
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 20px;"><input type="checkbox" id="wtc-select-all" /></th>
+                                                    <th class="check-column"><input type="checkbox" id="wtc-select-all" /></th>
                                                     <th><?php esc_html_e('Name', 'wtc-shipping'); ?></th>
                                                     <th><?php esc_html_e('Dimensions (L x W x H)', 'wtc-shipping'); ?></th>
                                                     <th><?php esc_html_e('Max Weight', 'wtc-shipping'); ?></th>
@@ -189,7 +189,7 @@ function wtcc_shipping_render_box_inventory_page() {
                     <div class="postbox">
                         <h2 class="hndle"><?php echo wtcc_section_heading( __( 'Box Types', 'wtc-shipping' ) ); ?></h2>
                         <div class="inside">
-                            <ul style="list-style: disc; padding-left: 20px;">
+                            <ul class="ul-disc">
                                 <li><strong><?php esc_html_e('Rigid:', 'wtc-shipping'); ?></strong> <?php esc_html_e('Cardboard boxes - good for fragile items, can stack heavy products.', 'wtc-shipping'); ?></li>
                                 <li><strong><?php esc_html_e('Soft:', 'wtc-shipping'); ?></strong> <?php esc_html_e('Poly mailers, bubble mailers - good for clothing, lightweight items.', 'wtc-shipping'); ?></li>
                             </ul>
@@ -199,7 +199,7 @@ function wtcc_shipping_render_box_inventory_page() {
                     <div class="postbox">
                         <h2 class="hndle"><?php echo wtcc_section_heading( __( 'How Box Packing Works', 'wtc-shipping' ) ); ?></h2>
                         <div class="inside">
-                            <ol style="list-style: decimal; padding-left: 20px;">
+                            <ol>
                                 <li><?php esc_html_e('Products are sorted by volume (largest first).', 'wtc-shipping'); ?></li>
                                 <li><?php esc_html_e('Each product is placed in the smallest available box that fits.', 'wtc-shipping'); ?></li>
                                 <li><?php esc_html_e('Multiple items are combined into the same box if they fit together.', 'wtc-shipping'); ?></li>

@@ -16,7 +16,7 @@
 			e.preventDefault();
 			btn.prop('disabled', true);
 			status.html(
-				'<span class="spinner is-active" style="vertical-align: middle;"></span><span style="vertical-align: middle; margin-left: 5px;">' +
+				'<span class="spinner is-active"></span><span>' +
 				wtcc_diagnostics.testing_text +
 				'</span>'
 			);
@@ -31,14 +31,14 @@
 				success: function (response) {
 					if (response.success) {
 						status.html(
-							'<span class="dashicons dashicons-yes-alt" style="color: #46b450; vertical-align: middle;"></span><span style="vertical-align: middle; margin-left: 5px;">' +
+							'<span class="dashicons dashicons-yes-alt"></span><span>' +
 							wtcc_diagnostics.success_text +
 							'</span>'
 						);
 					} else {
 						var message = response.data.message || wtcc_diagnostics.failed_text;
 						status.html(
-							'<span class="dashicons dashicons-dismiss" style="color: #dc3232; vertical-align: middle;"></span><span style="vertical-align: middle; margin-left: 5px;">' +
+							'<span class="dashicons dashicons-dismiss"></span><span>' +
 							message +
 							'</span>'
 						);
@@ -46,7 +46,7 @@
 				},
 				error: function () {
 					status.html(
-						'<span style="color: #dc3232;">' +
+						'<span>' +
 						wtcc_diagnostics.error_text +
 						'</span>'
 					);

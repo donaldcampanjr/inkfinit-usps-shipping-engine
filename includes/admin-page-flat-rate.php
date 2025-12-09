@@ -57,7 +57,7 @@ function wtcc_render_flat_rate_settings_page() {
                                         <tr>
                                             <th scope="row"><?php esc_html_e( 'Flat Rate Shipping', 'wtc-shipping' ); ?></th>
                                             <td>
-                                                <select name="flat_rate_enabled" style="width: 200px;">
+                                                <select name="flat_rate_enabled">
                                                     <option value="yes" <?php selected( $is_enabled, 'yes' ); ?>><?php esc_html_e( 'Enable', 'wtc-shipping' ); ?></option>
                                                     <option value="no" <?php selected( $is_enabled, 'no' ); ?>><?php esc_html_e( 'Disable', 'wtc-shipping' ); ?></option>
                                                 </select>
@@ -67,7 +67,7 @@ function wtcc_render_flat_rate_settings_page() {
                                         <tr>
                                             <th scope="row"><?php esc_html_e( 'Pricing Level', 'wtc-shipping' ); ?></th>
                                             <td>
-                                                <select name="flat_rate_pricing_type" style="width: 200px;">
+                                                <select name="flat_rate_pricing_type">
                                                     <option value="retail" <?php selected( $pricing_type, 'retail' ); ?>><?php esc_html_e( 'Retail Pricing', 'wtc-shipping' ); ?></option>
                                                     <option value="commercial" <?php selected( $pricing_type, 'commercial' ); ?>><?php esc_html_e( 'Commercial Pricing', 'wtc-shipping' ); ?></option>
                                                     <option value="business" <?php selected( $pricing_type, 'business' ); ?>><?php esc_html_e( 'Business Pricing', 'wtc-shipping' ); ?></option>
@@ -78,7 +78,7 @@ function wtcc_render_flat_rate_settings_page() {
                                         <tr>
                                             <th scope="row"><?php esc_html_e( 'Offer Logic', 'wtc-shipping' ); ?></th>
                                             <td>
-                                                <select name="flat_rate_preference" style="width: 200px;">
+                                                <select name="flat_rate_preference">
                                                     <option value="cheaper" <?php selected( $preference, 'cheaper' ); ?>><?php esc_html_e( 'Offer if Cheaper', 'wtc-shipping' ); ?></option>
                                                     <option value="always" <?php selected( $preference, 'always' ); ?>><?php esc_html_e( 'Always Offer', 'wtc-shipping' ); ?></option>
                                                     <option value="never" <?php selected( $preference, 'never' ); ?>><?php esc_html_e( 'Never Offer (Disable)', 'wtc-shipping' ); ?></option>
@@ -89,7 +89,7 @@ function wtcc_render_flat_rate_settings_page() {
                                         <tr>
                                             <th scope="row"><?php esc_html_e( 'Rate Adjustment', 'wtc-shipping' ); ?></th>
                                             <td>
-                                                <input type="number" step="0.01" name="flat_rate_markup" value="<?php echo esc_attr( $markup ); ?>" style="width: 100px;" />
+                                                <input type="number" step="0.01" name="flat_rate_markup" value="<?php echo esc_attr( $markup ); ?>" />
                                                 <p class="description"><?php esc_html_e( 'Add a fee or discount to all flat rates. Use a negative number for a discount (e.g., -1.50).', 'wtc-shipping' ); ?></p>
                                             </td>
                                         </tr>
@@ -104,10 +104,10 @@ function wtcc_render_flat_rate_settings_page() {
                                     <table class="wp-list-table widefat fixed striped">
                                         <thead>
                                             <tr>
-                                                <th style="width: 40px;"><?php esc_html_e( 'Enable', 'wtc-shipping' ); ?></th>
+                                                <th class="check-column"><?php esc_html_e( 'Enable', 'wtc-shipping' ); ?></th>
                                                 <th><?php esc_html_e( 'Box / Envelope', 'wtc-shipping' ); ?></th>
-                                                <th style="width: 120px;"><?php esc_html_e( 'Retail Price', 'wtc-shipping' ); ?></th>
-                                                <th style="width: 140px;"><?php esc_html_e( 'Commercial Price', 'wtc-shipping' ); ?></th>
+                                                <th><?php esc_html_e( 'Retail Price', 'wtc-shipping' ); ?></th>
+                                                <th><?php esc_html_e( 'Commercial Price', 'wtc-shipping' ); ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -126,12 +126,12 @@ function wtcc_render_flat_rate_settings_page() {
                                                 <td>
                                                     <input type="number" step="0.01" name="price_override[<?php echo esc_attr( $key ); ?>][retail]" 
                                                            placeholder="<?php echo esc_attr( number_format( $box['price_retail'], 2 ) ); ?>" 
-                                                           value="<?php echo esc_attr( $override_retail ); ?>" style="width: 100px;">
+                                                           value="<?php echo esc_attr( $override_retail ); ?>">
                                                 </td>
                                                 <td>
                                                     <input type="number" step="0.01" name="price_override[<?php echo esc_attr( $key ); ?>][commercial]" 
                                                            placeholder="<?php echo esc_attr( number_format( $box['price_commercial'], 2 ) ); ?>" 
-                                                           value="<?php echo esc_attr( $override_commercial ); ?>" style="width: 100px;">
+                                                           value="<?php echo esc_attr( $override_commercial ); ?>">
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>

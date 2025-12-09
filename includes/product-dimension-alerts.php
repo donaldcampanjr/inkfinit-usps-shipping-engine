@@ -165,20 +165,9 @@ function wtcc_add_shipping_data_alerts() {
 	$issues = wtcc_check_product_shipping_data( $product );
 	
 	if ( empty( $issues ) ) {
-		// All good - show success indicator
 		?>
-		<div class="wtcc-shipping-status wtcc-status-good" style="
-			background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-			border-left: 4px solid #10b981;
-			padding: 12px 16px;
-			margin: 10px 0 15px 0;
-			border-radius: 6px;
-			display: flex;
-			align-items: center;
-			gap: 10px;
-		">
-			<span class="dashicons dashicons-yes-alt" style="color: #10b981; font-size: 20px;"></span>
-			<span style="color: #065f46; font-weight: 500;">Shipping data complete – ready for accurate rate calculations</span>
+		<div class="notice notice-success inline">
+			<p><span class="dashicons dashicons-yes-alt"></span> <strong>Shipping data complete</strong> – ready for accurate rate calculations</p>
 		</div>
 		</div><!-- close #wtcc-shipping-status-wrapper -->
 		<?php
@@ -187,29 +176,15 @@ function wtcc_add_shipping_data_alerts() {
 	
 	// Show warnings
 	foreach ( $issues as $key => $issue ) {
-		$bg_color = $issue['severity'] === 'warning' 
-			? 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)' 
-			: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)';
-		$border_color = $issue['severity'] === 'warning' ? '#f59e0b' : '#3b82f6';
-		$icon_color = $issue['severity'] === 'warning' ? '#f59e0b' : '#3b82f6';
-		$text_color = $issue['severity'] === 'warning' ? '#92400e' : '#1e40af';
+		$notice_class = $issue['severity'] === 'warning' ? 'notice-warning' : 'notice-info';
 		$icon = $issue['severity'] === 'warning' ? 'dashicons-warning' : 'dashicons-info';
 		?>
-		<div class="wtcc-shipping-status wtcc-status-<?php echo esc_attr( $issue['severity'] ); ?>" style="
-			background: <?php echo esc_attr( $bg_color ); ?>;
-			border-left: 4px solid <?php echo esc_attr( $border_color ); ?>;
-			padding: 12px 16px;
-			margin: 10px 0 15px 0;
-			border-radius: 6px;
-			display: flex;
-			align-items: center;
-			gap: 10px;
-		">
-			<span class="dashicons <?php echo esc_attr( $icon ); ?>" style="color: <?php echo esc_attr( $icon_color ); ?>; font-size: 20px;"></span>
-			<span style="color: <?php echo esc_attr( $text_color ); ?>;">
+		<div class="notice <?php echo esc_attr( $notice_class ); ?> inline">
+			<p>
+				<span class="dashicons <?php echo esc_attr( $icon ); ?>"></span>
 				<strong><?php echo esc_html( $issue['field'] ); ?>:</strong>
 				<?php echo esc_html( $issue['message'] ); ?>
-			</span>
+			</p>
 		</div>
 		<?php
 	}
@@ -230,7 +205,7 @@ function wtcc_add_shipping_status_column( $columns ) {
 		
 		// Add after product name
 		if ( 'name' === $key ) {
-			$new_columns['wtcc_shipping'] = '<span class="dashicons dashicons-car" style="vertical-align: middle; margin-right: 4px;"></span>Shipping Data Status';
+			$new_columns['wtcc_shipping'] = '<span class="dashicons dashicons-car"></span> Shipping';
 		}
 	}
 	
@@ -249,18 +224,18 @@ function wtcc_render_shipping_status_column( $column, $post_id ) {
 	$product = wc_get_product( $post_id );
 	
 	if ( ! $product || ! $product->needs_shipping() ) {
-		echo '<span class="dashicons dashicons-minus" style="color: #94a3b8;" title="Virtual/Downloadable"></span>';
+		echo '<span class="dashicons dashicons-minus" title="Virtual/Downloadable"></span>';
 		return;
 	}
 	
 	$issues = wtcc_check_product_shipping_data( $product );
 	
 	if ( empty( $issues ) ) {
-		echo '<span class="dashicons dashicons-yes-alt" style="color: #10b981;" title="Shipping data complete"></span>';
+		echo '<span class="dashicons dashicons-yes-alt" title="Shipping data complete"></span>';
 	} elseif ( isset( $issues['weight'] ) ) {
-		echo '<span class="dashicons dashicons-warning" style="color: #f59e0b;" title="Missing weight"></span>';
+		echo '<span class="dashicons dashicons-warning" title="Missing weight"></span>';
 	} else {
-		echo '<span class="dashicons dashicons-info" style="color: #3b82f6;" title="Using default dimensions"></span>';
+		echo '<span class="dashicons dashicons-info" title="Using default dimensions"></span>';
 	}
 }
 
@@ -319,7 +294,7 @@ function wtcc_bulk_check_admin_notice() {
 	echo '<p><strong>Inkfinit Shipping Check:</strong> ';
 	echo esc_html( $complete ) . ' products have complete shipping data. ';
 	if ( $missing > 0 ) {
-		echo '<span style="color: #f59e0b;">' . esc_html( $missing ) . ' products are missing weight or dimensions.</span>';
+		echo '<strong>' . esc_html( $missing ) . ' products are missing weight or dimensions.</strong>';
 	}
 	echo '</p></div>';
 }
@@ -332,7 +307,7 @@ function wtcc_fallback_box_settings() {
 	$boxes = wtcc_get_standard_box_sizes();
 	$current = get_option( 'wtcc_fallback_box_size', 'default_safe' );
 	?>
-	<h2 style="margin-top: 30px;"><?php esc_html_e( 'Default Package Settings', 'wtc-shipping' ); ?></h2>
+	<h2><?php esc_html_e( 'Default Package Settings', 'wtc-shipping' ); ?></h2>
 	<p class="description">When products don't have dimensions set, these defaults are used for accurate USPS rate calculations.</p>
 	
 	<table class="form-table">
@@ -341,7 +316,7 @@ function wtcc_fallback_box_settings() {
 				<label for="wtcc_fallback_box_size"><?php esc_html_e( 'Fallback Box Size', 'wtc-shipping' ); ?></label>
 			</th>
 			<td>
-				<select name="wtcc_fallback_box_size" id="wtcc_fallback_box_size" style="min-width: 300px;">
+				<select name="wtcc_fallback_box_size" id="wtcc_fallback_box_size">
 					<?php foreach ( $boxes as $key => $box ) : ?>
 						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $current, $key ); ?>>
 							<?php echo esc_html( $box['name'] ); ?> 
@@ -363,7 +338,7 @@ function wtcc_fallback_box_settings() {
 					   value="<?php echo esc_attr( get_option( 'wtcc_fallback_weight', 8 ) ); ?>"
 					   min="0.1"
 					   step="0.1"
-					   style="width: 100px;"> 
+					   class="small-text"> 
 				<span><?php echo esc_html( get_option( 'woocommerce_weight_unit', 'oz' ) ); ?></span>
 				<p class="description"><?php esc_html_e( 'Default weight for products without weight set. Used only as a last resort.', 'wtc-shipping' ); ?></p>
 			</td>

@@ -159,15 +159,15 @@ function wtcc_add_tracking_to_emails( $order, $sent_to_admin, $plain_text ) {
 		echo "Track at: https://tools.usps.com/go/TrackConfirmAction?tLabels=" . $tracking_number . "\n";
 	} else {
 		?>
-		<div style="margin: 20px 0; padding: 20px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #0fb47e;">
-			<h3 style="margin: 0 0 10px 0; color: #002868;"> Track Your Package</h3>
-			<p style="margin: 0 0 10px 0;">
+		<div>
+			<h3> Track Your Package</h3>
+			<p>
 				<strong>Carrier:</strong> <?php echo esc_html( strtoupper( $tracking_carrier ?: 'USPS' ) ); ?><br>
 				<strong>Tracking Number:</strong> <?php echo esc_html( $tracking_number ); ?>
 			</p>
-			<a href="https://tools.usps.com/go/TrackConfirmAction?tLabels=<?php echo esc_attr( $tracking_number ); ?>" 
-			   style="display: inline-block; background: #002868; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-				Track Package →
+			<a href="https://tools.usps.com/go/TrackConfirmAction?tLabels=<?php echo esc_attr( $tracking_number ); ?>"
+			   class="button button-primary">
+				<?php esc_html_e( 'Track Package', 'wtc-shipping' ); ?>
 			</a>
 		</div>
 		<?php
@@ -182,15 +182,15 @@ function wtcc_admin_tracking_field( $order ) {
 	$tracking_number = $order->get_meta( '_wtcc_tracking_number' );
 	$tracking_carrier = $order->get_meta( '_wtcc_tracking_carrier' );
 	?>
-	<div class="address" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+	<div class="address">
 		<?php wp_nonce_field( 'wtcc_save_tracking', 'wtcc_tracking_nonce' ); ?>
-		<h3 style="display: flex; align-items: center; gap: 8px;">
-			<span class="dashicons dashicons-location" style="color: #0fb47e;"></span>
-			Shipment Tracking
+		<h3>
+			<span class="dashicons dashicons-location"></span>
+			<?php esc_html_e( 'Shipment Tracking', 'wtc-shipping' ); ?>
 		</h3>
 		<p>
 			<label for="wtcc_tracking_carrier"><strong>Carrier:</strong></label><br>
-			<select name="wtcc_tracking_carrier" id="wtcc_tracking_carrier" style="width: 100%; margin-top: 4px;">
+			<select name="wtcc_tracking_carrier" id="wtcc_tracking_carrier" class="widefat">
 				<option value="usps" <?php selected( $tracking_carrier, 'usps' ); ?>>USPS</option>
 				<option value="ups" <?php selected( $tracking_carrier, 'ups' ); ?>>UPS</option>
 				<option value="fedex" <?php selected( $tracking_carrier, 'fedex' ); ?>>FedEx</option>
@@ -203,8 +203,8 @@ function wtcc_admin_tracking_field( $order ) {
 				   name="wtcc_tracking_number" 
 				   id="wtcc_tracking_number" 
 				   value="<?php echo esc_attr( $tracking_number ); ?>"
-				   style="width: 100%; margin-top: 4px;"
-				   placeholder="Enter tracking number">
+				   class="widefat"
+				   placeholder="<?php esc_attr_e( 'Enter tracking number', 'wtc-shipping' ); ?>">
 		</p>
 		<?php if ( $tracking_number ) : ?>
 			<p>
@@ -305,8 +305,8 @@ function wtcc_output_tracking_column_content( $order ) {
 	$tracking = $order->get_meta( '_wtcc_tracking_number' );
 	
 	if ( $tracking ) {
-		echo '<span class="dashicons dashicons-yes-alt" style="color: #10b981;" title="' . esc_attr( $tracking ) . '"></span>';
+		echo '<span class="dashicons dashicons-yes-alt" title="' . esc_attr( $tracking ) . '"></span>';
 	} else {
-		echo '<span class="dashicons dashicons-minus" style="color: #cbd5e1;" title="No tracking"></span>';
+		echo '<span class="dashicons dashicons-minus" title="No tracking"></span>';
 	}
 }

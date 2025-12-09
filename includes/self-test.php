@@ -401,10 +401,10 @@ function wtcc_render_self_test_ui() {
 	// Check if Pro.
 	if ( ! wtcc_is_pro() ) {
 		?>
-		<div class="wtcc-self-test-locked" style="padding:15px;background:#f0f0f1;border-left:4px solid #d6336c;margin:20px 0;">
+		<div class="wtcc-self-test-locked">
 			<strong><?php esc_html_e( 'Self-Test', 'wtc-shipping' ); ?></strong>
 			<?php wtcc_render_pro_badge(); ?>
-			<p style="margin:10px 0 0;"><?php esc_html_e( 'Automated health checks require a Pro license.', 'wtc-shipping' ); ?></p>
+			<p><?php esc_html_e( 'Automated health checks require a Pro license.', 'wtc-shipping' ); ?></p>
 		</div>
 		<?php
 		return;
@@ -412,16 +412,16 @@ function wtcc_render_self_test_ui() {
 
 	$nonce = wp_create_nonce( 'wtcc_self_test_nonce' );
 	?>
-	<div class="wtcc-self-test" style="margin:20px 0;">
+	<div class="wtcc-self-test">
 		<h3><?php esc_html_e( 'Automated Self-Test', 'wtc-shipping' ); ?></h3>
 		<p class="description"><?php esc_html_e( 'Run a health check on your configuration and API connectivity.', 'wtc-shipping' ); ?></p>
 
-		<button type="button" id="wtcc-run-self-test" class="button button-primary" data-nonce="<?php echo esc_attr( $nonce ); ?>" style="margin:10px 0;">
-			<span class="dashicons dashicons-yes-alt" style="vertical-align:middle;margin-right:5px;" aria-hidden="true"></span>
+		<button type="button" id="wtcc-run-self-test" class="button button-primary" data-nonce="<?php echo esc_attr( $nonce ); ?>">
+			<span class="dashicons dashicons-yes-alt" aria-hidden="true"></span>
 			<?php esc_html_e( 'Run Health Check', 'wtc-shipping' ); ?>
 		</button>
 
-		<div id="wtcc-self-test-results" style="display:none;margin-top:20px;"></div>
+		<div id="wtcc-self-test-results" hidden></div>
 	</div>
 
 	<script>
@@ -430,8 +430,8 @@ function wtcc_render_self_test_ui() {
 			var btn = $(this);
 			var results = $('#wtcc-self-test-results');
 
-			btn.prop('disabled', true).html('<span class="dashicons dashicons-update spin" style="vertical-align:middle;margin-right:5px;"></span><?php echo esc_js( __( 'Running Tests...', 'wtc-shipping' ) ); ?>');
-			results.hide();
+			btn.prop('disabled', true).html('<span class="dashicons dashicons-update spin"></span><?php echo esc_js( __( 'Running Tests...', 'wtc-shipping' ) ); ?>');
+			results.attr('hidden', true);
 
 			$.post(ajaxurl, {
 				action: 'wtcc_run_self_test',
@@ -440,9 +440,9 @@ function wtcc_render_self_test_ui() {
 				if (response.success) {
 					wtccRenderTestResults(response.data, results);
 				} else {
-					results.html('<div class="notice notice-error"><p>' + response.data + '</p></div>').show();
+					results.html('<div class="notice notice-error"><p>' + response.data + '</p></div>').removeAttr('hidden');
 				}
-				btn.prop('disabled', false).html('<span class="dashicons dashicons-yes-alt" style="vertical-align:middle;margin-right:5px;"></span><?php echo esc_js( __( 'Run Health Check', 'wtc-shipping' ) ); ?>');
+				btn.prop('disabled', false).html('<span class="dashicons dashicons-yes-alt"></span><?php echo esc_js( __( 'Run Health Check', 'wtc-shipping' ) ); ?>');
 			});
 		});
 
@@ -450,19 +450,19 @@ function wtcc_render_self_test_ui() {
 			var html = '<div class="health-check-body">';
 
 			// Summary
-			html += '<div style="display:flex;gap:20px;margin-bottom:20px;padding:15px;background:#f9f9f9;border-radius:4px;">';
-			html += '<div><strong style="color:#28a745;font-size:24px;">' + data.summary.passed + '</strong><br><span style="color:#666;"><?php echo esc_js( __( 'Passed', 'wtc-shipping' ) ); ?></span></div>';
-			html += '<div><strong style="color:#f0ad4e;font-size:24px;">' + data.summary.warning + '</strong><br><span style="color:#666;"><?php echo esc_js( __( 'Warnings', 'wtc-shipping' ) ); ?></span></div>';
-			html += '<div><strong style="color:#d32f2f;font-size:24px;">' + data.summary.failed + '</strong><br><span style="color:#666;"><?php echo esc_js( __( 'Failed', 'wtc-shipping' ) ); ?></span></div>';
-			html += '</div>';
+			html += '<div class="card"><p>';
+			html += '<strong>' + data.summary.passed + '</strong> <?php echo esc_js( __( 'Passed', 'wtc-shipping' ) ); ?> | ';
+			html += '<strong>' + data.summary.warning + '</strong> <?php echo esc_js( __( 'Warnings', 'wtc-shipping' ) ); ?> | ';
+			html += '<strong>' + data.summary.failed + '</strong> <?php echo esc_js( __( 'Failed', 'wtc-shipping' ) ); ?>';
+			html += '</p></div>';
 
 			// Tests table
 			html += '<table class="widefat striped"><thead><tr><th><?php echo esc_js( __( 'Test', 'wtc-shipping' ) ); ?></th><th><?php echo esc_js( __( 'Status', 'wtc-shipping' ) ); ?></th><th><?php echo esc_js( __( 'Details', 'wtc-shipping' ) ); ?></th></tr></thead><tbody>';
 
 			var statusIcons = {
-				'passed': '<span style="color:#28a745;">✓</span>',
-				'warning': '<span style="color:#f0ad4e;">⚠</span>',
-				'failed': '<span style="color:#d32f2f;">✗</span>'
+				'passed': '<span class="dashicons dashicons-yes"></span>',
+				'warning': '<span class="dashicons dashicons-warning"></span>',
+				'failed': '<span class="dashicons dashicons-no"></span>'
 			};
 
 			$.each(data.tests, function(key, test) {
@@ -474,16 +474,12 @@ function wtcc_render_self_test_ui() {
 			});
 
 			html += '</tbody></table>';
-			html += '<p class="description" style="margin-top:10px;"><?php echo esc_js( __( 'Last run:', 'wtc-shipping' ) ); ?> ' + data.timestamp + '</p>';
+			html += '<p class="description"><?php echo esc_js( __( 'Last run:', 'wtc-shipping' ) ); ?> ' + data.timestamp + '</p>';
 			html += '</div>';
 
-			container.html(html).show();
+			container.html(html).removeAttr('hidden');
 		}
 	});
 	</script>
-	<style>
-	.dashicons.spin { animation: spin 1s linear infinite; }
-	@keyframes spin { 100% { transform: rotate(360deg); } }
-	</style>
 	<?php
 }

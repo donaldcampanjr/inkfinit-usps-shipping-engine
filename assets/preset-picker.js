@@ -5,6 +5,8 @@
  * - Updates shipping status notices dynamically
  * - Updates sidebar recommendation box
  * - No page reload needed
+ * 
+ * Uses native WordPress admin UI classes only.
  */
 (function($) {
 	'use strict';
@@ -25,9 +27,9 @@
 			if (!presetKey) {
 				$('#wtcc_preset_preview').hide();
 				$('#wtcc_preset_status').html(
-					'<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 6px;">' +
-					'<span class="dashicons dashicons-warning" style="color: #f59e0b; font-size: 18px; vertical-align: middle;"></span>' +
-					'<span style="color: #92400e; vertical-align: middle;"><strong>Action needed:</strong> Select a preset above to set shipping data</span>' +
+					'<div class="notice notice-warning inline">' +
+					'<p><span class="dashicons dashicons-warning"></span> ' +
+					'<strong>Action needed:</strong> Select a preset above to set shipping data</p>' +
 					'</div>'
 				);
 				return;
@@ -41,9 +43,9 @@
 				
 				// Show that we're ready but need to save
 				$('#wtcc_preset_status').html(
-					'<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 6px;">' +
-					'<span class="dashicons dashicons-info" style="color: #3b82f6; font-size: 18px; vertical-align: middle;"></span>' +
-					'<span style="color: #1e40af; vertical-align: middle;">Preset selected - <strong>Save product</strong> to apply shipping data</span>' +
+					'<div class="notice notice-info inline">' +
+					'<p><span class="dashicons dashicons-info"></span> ' +
+					'Preset selected - <strong>Save product</strong> to apply shipping data</p>' +
 					'</div>'
 				);
 				$('#wtcc_preset_preview').fadeIn();
@@ -52,7 +54,9 @@
 
 			// Show loading state
 			$select.prop('disabled', true);
-			$('#wtcc_preset_preview').html('<p style="padding: 10px; text-align: center;"><span class="spinner is-active" style="float: none;"></span> Applying preset...</p>').show();
+			$('#wtcc_preset_preview').html(
+				'<p><span class="spinner is-active"></span> Applying preset...</p>'
+			).show();
 
 			// AJAX call to apply preset (for existing products)
 			$.post(ajaxUrl, {
@@ -63,7 +67,7 @@
 			})
 			.done(function(response) {
 				if (response.success) {
-					console.log('✅ Preset applied:', response.data);
+					console.log('Preset applied:', response.data);
 					
 					// Update WooCommerce form fields
 					if (response.data.weight !== undefined) {
@@ -82,14 +86,14 @@
 					// Update shipping class dropdown
 					if (response.data.shipping_class_id) {
 						$('#product_shipping_class').val(response.data.shipping_class_id).trigger('change');
-						console.log('✅ Shipping class set to:', response.data.shipping_class_id);
+						console.log('Shipping class set to:', response.data.shipping_class_id);
 					}
 					
 					// Update the status panel in Shipping Preset tab
 					$('#wtcc_preset_status').html(
-						'<div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-left: 4px solid #10b981; padding: 12px 16px; border-radius: 6px;">' +
-						'<span class="dashicons dashicons-yes-alt" style="color: #10b981; font-size: 18px; vertical-align: middle;"></span>' +
-						'<span style="color: #065f46; font-weight: 500; vertical-align: middle;">✓ Shipping data set</span>' +
+						'<div class="notice notice-success inline">' +
+						'<p><span class="dashicons dashicons-yes-alt"></span> ' +
+						'<strong>Shipping data set</strong></p>' +
 						'</div>'
 					);
 					
@@ -119,17 +123,9 @@
 			var $wrapper = $('#wtcc-shipping-status-wrapper');
 			if ($wrapper.length) {
 				$wrapper.html(
-					'<div class="wtcc-shipping-status wtcc-status-good" style="' +
-					'background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);' +
-					'border-left: 4px solid #10b981;' +
-					'padding: 12px 16px;' +
-					'margin: 10px 0 15px 0;' +
-					'border-radius: 6px;' +
-					'display: flex;' +
-					'align-items: center;' +
-					'gap: 10px;">' +
-					'<span class="dashicons dashicons-yes-alt" style="color: #10b981; font-size: 20px;"></span>' +
-					'<span style="color: #065f46; font-weight: 500;">✓ Shipping data complete – preset applied!</span>' +
+					'<div class="notice notice-success inline">' +
+					'<p><span class="dashicons dashicons-yes-alt"></span> ' +
+					'<strong>Shipping data complete</strong> - preset applied!</p>' +
 					'</div>'
 				);
 			}
@@ -142,14 +138,13 @@
 			var $recBox = $('#wtc-recommendation-box');
 			if ($recBox.length && data.length && data.width && data.height && data.weight) {
 				$recBox.html(
-					'<div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 12px; margin-bottom: 12px;">' +
-					'<h4 style="margin: 0 0 8px 0; font-size: 13px; color: #065f46;">✓ Preset Applied</h4>' +
-					'<p style="margin: 0; font-size: 12px; line-height: 1.6; color: #065f46;">' +
-					'Weight and dimensions set from preset. Ready for shipping calculations.' +
-					'</p></div>' +
-					'<div style="font-size: 11px; color: #666; padding-top: 8px; border-top: 1px solid #ddd;">' +
-					'<strong>Your Product:</strong> ' + data.length + ' × ' + data.width + ' × ' + data.height + ' in, ' + data.weight + ' oz' +
-					'</div>'
+					'<div class="notice notice-success inline">' +
+					'<p><strong>Preset Applied</strong><br>' +
+					'Weight and dimensions set from preset. Ready for shipping calculations.</p>' +
+					'</div>' +
+					'<p class="description">' +
+					'<strong>Your Product:</strong> ' + data.length + ' x ' + data.width + ' x ' + data.height + ' in, ' + data.weight + ' oz' +
+					'</p>'
 				);
 			}
 			
@@ -158,11 +153,9 @@
 				var $inside = $(this);
 				if ($inside.find(':contains("Missing Dimensions")').length) {
 					$inside.find('#wtc-recommendation-box').html(
-						'<div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 12px;">' +
-						'<p style="margin: 0; font-size: 12px; color: #065f46;">' +
-						'<strong>✓ Preset Applied</strong><br>' +
-						'Shipping data is now complete.' +
-						'</p></div>'
+						'<div class="notice notice-success inline">' +
+						'<p><strong>Preset Applied</strong> - Shipping data is now complete.</p>' +
+						'</div>'
 					);
 				}
 			});

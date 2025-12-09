@@ -521,7 +521,7 @@ function wtcc_render_variation_manager_page() {
 		?>
 		<div class="wrap">
 			<?php wtcc_admin_header( __( 'Bulk Variation Manager', 'wtc-shipping' ) ); ?>
-			<div class="notice notice-info" style="margin-top:15px;">
+			<div class="notice notice-info">
 				<p>
 					<?php esc_html_e( 'The Bulk Variation Manager is a Pro feature. Upgrade to Inkfinit USPS Shipping Engine Pro to unlock bulk pricing tools, automation, labels, and tracking.', 'wtc-shipping' ); ?>
 				</p>

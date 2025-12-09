@@ -45,32 +45,32 @@ function wtcc_render_dimension_recommender( $post ) {
 	$weight_unit = get_option( 'woocommerce_weight_unit', 'lbs' );
 	
 	?>
-	<div id="wtc-recommendation-box" style="padding: 12px 0;">
+	<div id="wtc-recommendation-box">
 		<?php if ( $length && $width && $height && $weight ) : ?>
 			<?php
 			// Analyze dimensions and get recommendation
 			$recommendation = wtcc_analyze_product_dimensions( $length, $width, $height, $weight, $dim_unit, $weight_unit );
 			?>
-			
-			<div style="background: #f0f6fc; border-left: 4px solid #2271b1; padding: 12px; margin-bottom: 12px;">
-				<h4 style="margin: 0 0 8px 0; font-size: 13px;">
+
+			<div class="notice notice-info inline">
+				<h4>
 					<?php echo esc_html( $recommendation['icon'] ); ?> <?php echo esc_html( $recommendation['title'] ); ?>
 				</h4>
-				<p style="margin: 0; font-size: 12px; line-height: 1.6;">
+				<p>
 					<?php echo wp_kses_post( $recommendation['message'] ); ?>
 				</p>
 			</div>
 			
 			<?php if ( ! empty( $recommendation['presets'] ) ) : ?>
-				<div style="margin-bottom: 12px;">
-					<strong style="font-size: 12px; display: block; margin-bottom: 6px;">Recommended Presets:</strong>
-					<ul style="margin: 0; padding-left: 20px; font-size: 12px;">
+				<div>
+					<strong>Recommended Presets:</strong>
+					<ul>
 						<?php foreach ( $recommendation['presets'] as $preset ) : ?>
-							<li style="margin-bottom: 4px;">
+							<li>
 								<strong><?php echo esc_html( $preset['name'] ); ?></strong><br>
-								<span style="color: #666;"><?php echo esc_html( $preset['dimensions'] ); ?></span>
+								<span><?php echo esc_html( $preset['dimensions'] ); ?></span>
 								<?php if ( ! empty( $preset['reason'] ) ) : ?>
-									<br><em style="color: #2271b1;"><?php echo esc_html( $preset['reason'] ); ?></em>
+									<br><em><?php echo esc_html( $preset['reason'] ); ?></em>
 								<?php endif; ?>
 							</li>
 						<?php endforeach; ?>
@@ -78,13 +78,13 @@ function wtcc_render_dimension_recommender( $post ) {
 				</div>
 			<?php endif; ?>
 			
-			<div style="font-size: 11px; color: #666; padding-top: 8px; border-top: 1px solid #ddd;">
+			<div>
 				<strong>Your Product:</strong> <?php echo esc_html( $length ); ?> × <?php echo esc_html( $width ); ?> × <?php echo esc_html( $height ); ?> <?php echo esc_html( $dim_unit ); ?>, <?php echo esc_html( $weight ); ?> <?php echo esc_html( $weight_unit ); ?>
 			</div>
 			
 		<?php else : ?>
-			<div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px;">
-				<p style="margin: 0; font-size: 12px;">
+			<div class="notice notice-warning inline">
+				<p>
 					<strong>⚠️ Missing Dimensions</strong><br>
 					Enter product dimensions and weight in the <strong>Shipping</strong> tab to get smart recommendations.
 				</p>
@@ -115,7 +115,7 @@ function wtcc_render_dimension_recommender( $post ) {
 				return;
 			}
 			
-			$('#wtc-recommendation-box').html('<div style="padding: 12px; text-align: center;"><span class="spinner is-active" style="float: none;"></span></div>');
+			$('#wtc-recommendation-box').html('<div><span class="spinner is-active"></span></div>');
 			
 			$.post(ajaxurl, {
 				action: 'wtcc_get_dimension_recommendation',
@@ -159,25 +159,25 @@ function wtcc_ajax_get_dimension_recommendation() {
 	
 	ob_start();
 	?>
-	<div style="background: #f0f6fc; border-left: 4px solid #2271b1; padding: 12px; margin-bottom: 12px;">
-		<h4 style="margin: 0 0 8px 0; font-size: 13px;">
+	<div class="notice notice-info inline">
+		<h4>
 			<?php echo esc_html( $recommendation['icon'] ); ?> <?php echo esc_html( $recommendation['title'] ); ?>
 		</h4>
-		<p style="margin: 0; font-size: 12px; line-height: 1.6;">
+		<p>
 			<?php echo wp_kses_post( $recommendation['message'] ); ?>
 		</p>
 	</div>
 	
 	<?php if ( ! empty( $recommendation['presets'] ) ) : ?>
-		<div style="margin-bottom: 12px;">
-			<strong style="font-size: 12px; display: block; margin-bottom: 6px;">Recommended Presets:</strong>
-			<ul style="margin: 0; padding-left: 20px; font-size: 12px;">
+		<div>
+			<strong>Recommended Presets:</strong>
+			<ul>
 				<?php foreach ( $recommendation['presets'] as $preset ) : ?>
-					<li style="margin-bottom: 4px;">
+					<li>
 						<strong><?php echo esc_html( $preset['name'] ); ?></strong><br>
-						<span style="color: #666;"><?php echo esc_html( $preset['dimensions'] ); ?></span>
+						<span><?php echo esc_html( $preset['dimensions'] ); ?></span>
 						<?php if ( ! empty( $preset['reason'] ) ) : ?>
-							<br><em style="color: #2271b1;"><?php echo esc_html( $preset['reason'] ); ?></em>
+							<br><em><?php echo esc_html( $preset['reason'] ); ?></em>
 						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>
@@ -185,7 +185,7 @@ function wtcc_ajax_get_dimension_recommendation() {
 		</div>
 	<?php endif; ?>
 	
-	<div style="font-size: 11px; color: #666; padding-top: 8px; border-top: 1px solid #ddd;">
+	<div>
 		<strong>Your Product:</strong> <?php echo esc_html( $length ); ?> × <?php echo esc_html( $width ); ?> × <?php echo esc_html( $height ); ?> <?php echo esc_html( $dim_unit ); ?>, <?php echo esc_html( $weight ); ?> <?php echo esc_html( $weight_unit ); ?>
 	</div>
 	<?php
