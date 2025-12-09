@@ -1,41 +1,126 @@
-# Inkfinit Shipping Core Design - Documentation
+# Inkfinit USPS Shipping Engine - Documentation Hub
 
-<!-- markdownlint-disable MD013 -->
+> Professional USPS shipping rates, labels, and tracking for WooCommerce.
 
-## 🎯 Purpose
+---
 
-This `docs` folder is the single source of truth for the Inkfinit Shipping Engine. It contains all technical, business, and user-facing documentation needed to understand, maintain, and extend the plugin.
+## Quick Navigation
 
-## 📚 Key Documents
+| Document | Audience | Description |
+|----------|----------|-------------|
+| [README.md](../README.md) | Everyone | Overview, features, installation |
+| [USER-GUIDE.md](../USER-GUIDE.md) | Store Owners | How to use the plugin |
+| [CHANGELOG.md](../CHANGELOG.md) | Everyone | Version history |
 
-- **For Business:** [getting-started/BUSINESS-VALUE.md](./getting-started/BUSINESS-VALUE.md) - Understand the "why."
-- **For Developers:** [AI-DEVELOPER-GUIDE.md](./AI-DEVELOPER-GUIDE.md) - Understand the "how."
-- **For Architecture:** [architecture/FILE-STRUCTURE.md](./architecture/FILE-STRUCTURE.md) - Understand the "where."
-- **For Licensing:** [COMMERCIAL-LICENSING-UPDATE.md](./COMMERCIAL-LICENSING-UPDATE.md) - Understand the commercial model.
+### Architecture Documentation
 
-## 🗂️ Document Index
+| Document | Description |
+|----------|-------------|
+| [SYSTEM-ARCHITECTURE.md](architecture/SYSTEM-ARCHITECTURE.md) | Complete system design |
+| [FILE-STRUCTURE.md](architecture/FILE-STRUCTURE.md) | File organization and load order |
+| [QUICK-REFERENCE.md](reference/QUICK-REFERENCE.md) | Quick reference card for developers |
 
-```markdowntext
-.
-├── AI-DEVELOPER-GUIDE.md
-├── COMMERCIAL-LICENSING-UPDATE.md
-├── COMPLETION-REPORT.md
-├── FINAL-COMPLETION-SUMMARY.md
-├── INDEX.md
-├── WHATS-NEXT.md
-├── architecture
-│   └── FILE-STRUCTURE.md
-├── deployment
-│   ├── DEPLOYMENT-CHECKLIST.md
-│   └── VERIFICATION-TESTS.md
-└── getting-started
-    └── BUSINESS-VALUE.md
+### License Server
+
+| Document | Description |
+|----------|-------------|
+| [LICENSE-SERVER-SETUP.md](LICENSE-SERVER-SETUP.md) | License server deployment guide |
+| [License Server README](../license-server/README.md) | Integration reference |
+
+---
+
+## For Store Owners
+
+### Getting Started
+
+1. **Install the plugin** from WordPress.org or upload manually
+2. **Activate** in Plugins menu
+3. **Get USPS API credentials** from [USPS Business Gateway](https://gateway.usps.com)
+4. **Configure** in Inkfinit Shipping → USPS API
+5. **Start shipping!**
+
+### Feature Tiers
+
+| Feature | Free | Pro | Enterprise |
+|---------|:----:|:---:|:----------:|
+| Rate Calculator | ✅ | ✅ | ✅ |
+| Live Checkout Rates | ❌ | ✅ | ✅ |
+| Label Printing | ❌ | ✅ | ✅ |
+| Customer Tracking | ❌ | ✅ | ✅ |
+| Shipping Presets | ❌ | ✅ | ✅ |
+| Bulk Variation Manager | ❌ | ✅ | ✅ |
+| Diagnostics | ❌ | ✅ | ✅ |
+| White-Label Branding | ❌ | ❌ | ✅ |
+| Bulk License Import | ❌ | ❌ | ✅ |
+
+### Support
+
+- **Free Users:** [WordPress.org Forums](https://wordpress.org/support/plugin/inkfinit-usps-shipping-engine)
+- **Pro/Enterprise:** support@inkfinit.pro
+
+---
+
+## For Developers
+
+### AI Developers
+
+See [.github/copilot-instructions.md](../.github/copilot-instructions.md) for AI-specific guidance.
+
+See [.github/AI-AUDIT-GUIDE.md](../.github/AI-AUDIT-GUIDE.md) for security audit checklist.
+
+### Architecture
+
+- **Main Plugin:** `plugin.php` - Entry point, hooks, admin menu
+- **Includes:** `includes/` - All PHP functionality
+- **Assets:** `assets/` - CSS and JavaScript
+- **License Server:** `license-server/` - Separate plugin for inkfinit.pro
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `includes/license.php` | License validation (client) |
+| `includes/usps-api.php` | USPS OAuth v3 integration |
+| `includes/class-shipping-method.php` | WooCommerce shipping method |
+| `includes/label-printing.php` | Label generation |
+| `includes/customer-tracking-display.php` | Customer-facing tracking |
+
+### License Key Format
+
+```
+IUSE-{TIER}-{TIMESTAMP}-{RANDOM}-{ORDER_HEX}
+
+Examples:
+- IUSE-PRO-675789AB-A1B2C3-F1
+- IUSE-ENT-675789AB-X9Y8Z7-2A
 ```
 
-## 🧑‍💻 For Developers
+### REST API Endpoints
 
-If you are a developer, start with the [AI-DEVELOPER-GUIDE.md](./AI-DEVELOPER-GUIDE.md). It provides a complete walkthrough of the development process, from setup to deployment. The [architecture/FILE-STRUCTURE.md](./architecture/FILE-STRUCTURE.md) document will help you locate specific files and understand the overall structure.
+**License Validation:**
 
-## 📈 For Business Stakeholders
+```
+POST https://inkfinit.pro/wp-json/inkfinit/v1/license/validate
+Body: { "license_key": "IUSE-PRO-...", "site_url": "https://customer.com" }
+```
 
-If you are a business stakeholder, start with [getting-started/BUSINESS-VALUE.md](./getting-started/BUSINESS-VALUE.md). It explains the commercial goals and revenue model. The [COMMERCIAL-LICENSING-UPDATE.md](./COMMERCIAL-LICENSING-UPDATE.md) provides details on the new licensing structure.
+---
+
+## Architecture Docs
+
+- [SYSTEM-ARCHITECTURE.md](architecture/SYSTEM-ARCHITECTURE.md) - Technical architecture
+- [FILE-STRUCTURE.md](architecture/FILE-STRUCTURE.md) - Directory structure
+
+---
+
+## Deployment
+
+See [TODO-BEFORE-LAUNCH.md](../TODO-BEFORE-LAUNCH.md) for pre-launch checklist.
+
+---
+
+## License
+
+- Plugin: [GPL v3](../LICENSE)
+- Commercial Terms: [LICENSE-COMMERCIAL.md](../LICENSE-COMMERCIAL.md)
+

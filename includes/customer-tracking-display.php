@@ -2,6 +2,7 @@
 /**
  * Customer Tracking Display
  * 
+ * PRO/ENTERPRISE FEATURE
  * Shows USPS tracking information in customer My Account area
  * Styled nicely to encourage return visits
  * 
@@ -14,10 +15,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Check if customer tracking features should be enabled.
+ * Requires Pro or Enterprise license.
+ * 
+ * @return bool True if tracking features are enabled.
+ */
+function wtcc_customer_tracking_enabled() {
+	return function_exists( 'wtcc_is_pro' ) && wtcc_is_pro();
+}
+
+/**
  * Add tracking section to order details in My Account
+ * PRO/ENTERPRISE ONLY - Free users don't see this.
  */
 add_action( 'woocommerce_order_details_after_order_table', 'wtcc_display_order_tracking', 10, 1 );
 function wtcc_display_order_tracking( $order ) {
+	// Pro/Enterprise gating
+	if ( ! wtcc_customer_tracking_enabled() ) {
+		return;
+	}
+	
 	if ( ! $order ) {
 		return;
 	}
@@ -113,9 +130,15 @@ function wtcc_display_order_tracking( $order ) {
 
 /**
  * Add tracking to order emails
+ * PRO/ENTERPRISE ONLY
  */
 add_action( 'woocommerce_email_order_meta', 'wtcc_add_tracking_to_emails', 20, 3 );
 function wtcc_add_tracking_to_emails( $order, $sent_to_admin, $plain_text ) {
+	// Pro/Enterprise gating
+	if ( ! wtcc_customer_tracking_enabled() ) {
+		return;
+	}
+	
 	if ( $sent_to_admin ) {
 		return; // Don't add to admin emails
 	}
@@ -160,6 +183,7 @@ function wtcc_admin_tracking_field( $order ) {
 	$tracking_carrier = $order->get_meta( '_wtcc_tracking_carrier' );
 	?>
 	<div class="address" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ddd;">
+		<?php wp_nonce_field( 'wtcc_save_tracking', 'wtcc_tracking_nonce' ); ?>
 		<h3 style="display: flex; align-items: center; gap: 8px;">
 			<span class="dashicons dashicons-location" style="color: #0fb47e;"></span>
 			Shipment Tracking
@@ -197,9 +221,18 @@ function wtcc_admin_tracking_field( $order ) {
 
 /**
  * Save tracking number from order edit
+ * 
+ * Security: Requires nonce verification AND capability check.
  */
 add_action( 'woocommerce_process_shop_order_meta', 'wtcc_save_admin_tracking_field', 10, 1 );
 function wtcc_save_admin_tracking_field( $order_id ) {
+	// Verify nonce
+	if ( ! isset( $_POST['wtcc_tracking_nonce'] ) || 
+	     ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wtcc_tracking_nonce'] ) ), 'wtcc_save_tracking' ) ) {
+		return;
+	}
+	
+	// Capability check
 	if ( ! current_user_can( 'edit_shop_orders' ) ) {
 		return;
 	}
@@ -210,12 +243,12 @@ function wtcc_save_admin_tracking_field( $order_id ) {
 	}
 	
 	if ( isset( $_POST['wtcc_tracking_number'] ) ) {
-		$tracking = sanitize_text_field( $_POST['wtcc_tracking_number'] );
+		$tracking = sanitize_text_field( wp_unslash( $_POST['wtcc_tracking_number'] ) );
 		$order->update_meta_data( '_wtcc_tracking_number', $tracking );
 	}
 	
 	if ( isset( $_POST['wtcc_tracking_carrier'] ) ) {
-		$carrier = sanitize_text_field( $_POST['wtcc_tracking_carrier'] );
+		$carrier = sanitize_text_field( wp_unslash( $_POST['wtcc_tracking_carrier'] ) );
 		$order->update_meta_data( '_wtcc_tracking_carrier', $carrier );
 	}
 	

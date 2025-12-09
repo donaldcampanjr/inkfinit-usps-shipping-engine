@@ -270,14 +270,30 @@ function wtcc_usps_get_tracking( $tracking_number ) {
 
 /**
  * AJAX handler for tracking lookup
+ * 
+ * Security: Nonce verification required for CSRF protection.
+ * Note: This is available to logged-out users (nopriv) for customer tracking pages.
  */
 add_action( 'wp_ajax_wtcc_lookup_tracking', 'wtcc_ajax_lookup_tracking' );
 add_action( 'wp_ajax_nopriv_wtcc_lookup_tracking', 'wtcc_ajax_lookup_tracking' );
 function wtcc_ajax_lookup_tracking() {
-	$tracking = sanitize_text_field( $_POST['tracking_number'] ?? '' );
+	// Verify nonce for CSRF protection
+	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'wtcc_tracking_lookup' ) ) {
+		wp_send_json_error( array( 'message' => 'Security check failed' ) );
+	}
+	
+	$tracking = isset( $_POST['tracking_number'] ) ? sanitize_text_field( wp_unslash( $_POST['tracking_number'] ) ) : '';
 	
 	if ( ! $tracking ) {
-		wp_send_json_error( 'No tracking number provided' );
+		wp_send_json_error( array( 'message' => 'No tracking number provided' ) );
+	}
+	
+	// Validate tracking number format
+	if ( function_exists( 'wtcc_validate_tracking_number' ) ) {
+		$tracking = wtcc_validate_tracking_number( $tracking );
+		if ( ! $tracking ) {
+			wp_send_json_error( array( 'message' => 'Invalid tracking number format' ) );
+		}
 	}
 	
 	$result = wtcc_usps_get_tracking( $tracking );
@@ -285,7 +301,7 @@ function wtcc_ajax_lookup_tracking() {
 	if ( $result ) {
 		wp_send_json_success( $result );
 	} else {
-		wp_send_json_error( 'Could not retrieve tracking information' );
+		wp_send_json_error( array( 'message' => 'Could not retrieve tracking information' ) );
 	}
 }
 

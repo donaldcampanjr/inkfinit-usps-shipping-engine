@@ -100,13 +100,20 @@ function wtcc_add_preset_tab( $tabs ) {
 
 /**
  * AJAX: Auto-fill fields when preset selected
+ * 
+ * Security: Requires nonce AND edit_products capability.
  */
 add_action( 'wp_ajax_wtcc_apply_preset', 'wtcc_ajax_apply_preset' );
 function wtcc_ajax_apply_preset() {
 	check_ajax_referer( 'wtcc_preset_nonce', 'nonce' );
+	
+	// Capability check - only users who can edit products
+	if ( ! current_user_can( 'edit_products' ) ) {
+		wp_send_json_error( array( 'message' => 'Permission denied' ) );
+	}
 
-	$product_id = intval( $_POST['product_id'] ?? 0 );
-	$preset_key = sanitize_text_field( $_POST['preset_key'] ?? '' );
+	$product_id = isset( $_POST['product_id'] ) ? intval( $_POST['product_id'] ) : 0;
+	$preset_key = isset( $_POST['preset_key'] ) ? sanitize_text_field( wp_unslash( $_POST['preset_key'] ) ) : '';
 
 	if ( ! $product_id || ! $preset_key ) {
 		wp_send_json_error( 'Missing data' );

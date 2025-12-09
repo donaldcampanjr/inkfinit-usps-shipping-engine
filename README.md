@@ -1,394 +1,264 @@
 # Inkfinit USPS Shipping Engine
 
-<!-- markdownlint-disable MD013 -->
+**Professional USPS shipping rates, labels, and tracking for WooCommerce.**
 
-**Professional real-time USPS shipping rates for WooCommerce**
-
-**Developed by:** Inkfinit LLC  
-**Purpose:** Simplifying shipping operations for e-commerce stores worldwide
-
-**Display real-time USPS rates at checkout with zero configuration. Automatic
-rate calculation, instant delivery estimates, and seamless tracking integration.
-Save time with smart presets and eliminate manual rate entry forever.**
-
-Inkfinit USPS Shipping Engine provides real-time USPS shipping rates for WooCommerce:
-
-- **Free Mode** – no license key saved  
-  - Advanced features (live checkout rates, label printing, tracking, presets, bulk tools, diagnostics, pickup, security dashboard) are gently gated and show Pro-only messaging instead of breaking.
-
-- **Pro Mode** – license key saved (and optionally validated against your own license server)  
-  - Unlocks the full engine: real-time USPS checkout rates, labels from orders, tracking with status badges, shipping presets, variation manager, diagnostics, pickup scheduling, security dashboard, and more.
-
-You always upload a **single plugin zip** – behavior is controlled by whether a license key is present in the settings.
-
-![WordPress Version](https://img.shields.io/badge/WordPress-5.8%2B-blue)
-![PHP Version](https://img.shields.io/badge/PHP-8.0%2B-purple)
-![WooCommerce](https://img.shields.io/badge/WooCommerce-8.0%2B-96588A)
-![License](https://img.shields.io/badge/License-GPL--3.0--or--later-green)
+[![WordPress](https://img.shields.io/badge/WordPress-5.8+-blue.svg)](https://wordpress.org/)
+[![WooCommerce](https://img.shields.io/badge/WooCommerce-6.0+-purple.svg)](https://woocommerce.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4.svg)](https://php.net/)
+[![License](https://img.shields.io/badge/License-GPLv2-green.svg)](LICENSE)
 
 ---
 
-## 💳 Support & Licensing
+## Overview
 
-| Tier | Cost | Features | Support |
-| -------------- | --------- | -------------------------------------------------- | -------------- |
-| **Free** | $0 | Pro features gated in admin | WordPress.org forums |
-| **Professional** | $149/year | Full Pro engine (live rates, labels, tracking, presets, diagnostics, bulk tools) | Email (24–48hr response) |
-| **Enterprise** | Custom | Dedicated support + custom development | Phone + Email + SLA |
+Inkfinit USPS Shipping Engine delivers accurate USPS shipping rates directly in your WooCommerce checkout using the modern USPS OAuth API v3. Works immediately with a free shipping calculator, with Pro/Enterprise licenses unlocking live API rates, label printing, tracking, and advanced features.
 
-**📝 License:** GPL-3.0-or-later
-- Free to use, modify, and redistribute per GPL
-- Official support and services available for purchase
-- See [LICENSE](LICENSE) for full GPL text
+### Key Features
+
+| Feature | Free | Pro | Enterprise |
+|---------|------|-----|------------|
+| Shipping Calculator Widget | ✅ | ✅ | ✅ |
+| Per-Ounce Rate Fallback | ✅ | ✅ | ✅ |
+| Live USPS API Rates | ❌ | ✅ | ✅ |
+| Shipping Label Printing | ❌ | ✅ | ✅ |
+| Package Tracking | ❌ | ✅ | ✅ |
+| Customer Tracking Portal | ❌ | ✅ | ✅ |
+| Product Presets | ❌ | ✅ | ✅ |
+| Bulk Variation Manager | ❌ | ✅ | ✅ |
+| Split Shipments | ❌ | ❌ | ✅ |
+| Multi-Origin Support | ❌ | ❌ | ✅ |
+| Priority Support | ❌ | ✅ | ✅ |
 
 ---
 
+## Quick Start
+
+### Requirements
+
+- WordPress 5.8+
+- WooCommerce 6.0+
+- PHP 8.0+ (8.1+ recommended)
+- SSL certificate (HTTPS required for USPS API)
+
+### Installation
+
+1. **Download** the plugin ZIP file
+2. **Upload** via WordPress Admin → Plugins → Add New → Upload Plugin
+3. **Activate** the plugin
+4. **Navigate** to WooCommerce → Inkfinit Shipping
+
+### Initial Setup
+
+1. **Free Mode** - Works immediately with per-ounce rate calculator
+2. **Pro/Enterprise** - Enter your license key in Inkfinit Shipping → License
+3. **USPS API** - Configure credentials in Inkfinit Shipping → USPS Settings (Pro/Enterprise)
+
 ---
 
-## 🚀 Features
+## Configuration
 
-### Replaces WooCommerce Shipping
+### USPS API Setup (Pro/Enterprise)
 
-- ✅ **Complete replacement** - No need for WooCommerce Shipping & Tax
-- ✅ **Modern API** - USPS OAuth v3 (WooCommerce Shipping uses legacy APIs)
-- ✅ **PHP 8.1+ compatible** - Fully tested on latest PHP versions
-- ✅ **Standalone** - All USPS functionality built-in
+1. Create a [USPS Business Customer Gateway](https://gateway.usps.com/) account
+2. Apply for API credentials (Web Tools API)
+3. Enter credentials in Inkfinit Shipping → USPS Settings:
+   - Consumer Key
+   - Consumer Secret
+   - Origin ZIP Code
+4. Click "Test Connection" to verify
 
-### Live USPS Rates
+### Shipping Calculator (All Tiers)
 
-- **OAuth v3 API** - Modern USPS API (not legacy Web Tools)
-- **Real-time pricing** - Accurate rates at checkout
-- **Smart caching** - 4-hour rate cache, 50-minute OAuth cache
-- **Graceful fallbacks** - Never breaks checkout
+The frontend calculator provides instant shipping estimates:
 
-### Shipping Methods
-
-- ✅ USPS First Class Mail (under 13 oz)
-- ✅ USPS Ground Advantage (replaces Retail Ground)
-- ✅ USPS Priority Mail (1-3 days)
-- ✅ USPS Priority Mail Express (overnight)
-- ✅ Media Mail (books, CDs, DVDs)
-- ✅ Cubic Rate Pricing
-
-### Order Management
-
-- 📍 **Tracking integration** - Add tracking numbers to orders
-- 📧 **Customer notifications** - Automatic tracking emails
-- 🎫 **Label printing** - Generate USPS labels (Pro/Premium/Enterprise)
-- ✅ **Auto-complete orders** - Mark complete on label print
-
-### Product Tools
-
-- 📦 **Shipping presets** - T-shirts, vinyl, posters, etc.
-- 📐 **Dimension handling** - Actual dimensions or preset fallback
-- ⚠️ **Dimension alerts** - Flag products missing shipping data
-- 🔍 **Product scanner** - Audit shipping configuration
-
-### Bulk Operations
-
-- 📊 **Variation Manager** - Update all variations by attribute (Pro+)
-- 💰 **Bulk pricing** - Percentage or exact price changes (Pro+)
-- 📦 **Bulk stock** - Update inventory by attribute (Pro+)
-
-### Admin Dashboard
-
-- 🔧 **Diagnostics** - Real-time system health
-- 🧪 **API testing** - Verify USPS connection
-- 🛡️ **Security dashboard** - Monitor security status
-
-## 📋 Requirements
-
-- WordPress 5.8+ (tested up to 6.4)
-- WooCommerce 8.0+ (required)
-- PHP 8.0+ (PHP 8.1+ recommended)
-- USPS Business Customer Gateway account (free)
-
-### Not Required
-
-- ❌ WooCommerce Shipping & Tax - This plugin replaces it
-- ❌ WooCommerce Services - Not needed
-- ❌ Other USPS rate plugins - Conflicts will occur
-
-## 🔄 Migrating from WooCommerce Shipping
-
-### Before installing
-
-1. **Deactivate** WooCommerce Shipping & Tax
-2. **Deactivate** WooCommerce Services (if installed)
-3. **Remove** any other USPS rate plugins
-4. Note your current USPS credentials
-5. Install Inkfinit USPS Shipping Engine
-
-### After installation
-
-- Your shipping zones remain intact
-- Replace old USPS methods with Inkfinit methods
-- Configure USPS API credentials (same as before)
-- Test checkout flow
-
-## ⚡ Quick Start
-
-### 1. Install & Activate
-
-```bashtext
-# Upload to plugins directory
-wp-content/plugins/wtc-shipping-core/
-
-# Or install via WordPress admin
-Plugins → Add New → Upload Plugin
+```
+Rate Formula: Base Rate + (Weight × Per-Ounce Rate) + Handling Fee
 ```
 
-### 2. Configure USPS API
+Configure in WooCommerce → Settings → Shipping → Inkfinit USPS:
+- Base rate per service class
+- Per-ounce multiplier
+- Handling fees
+- Enabled shipping services
 
-1. Go to **Inkfinit Shipping → USPS Settings**
-2. Enter your USPS Consumer Key
-3. Enter your USPS Consumer Secret
-4. Set your Origin ZIP Code
-5. Click **Test API Connection**
+### Product Presets (Pro/Enterprise)
 
-### 3. Add Shipping Methods
+Save time with reusable shipping configurations:
 
-1. Go to **WooCommerce → Settings → Shipping → Shipping Zones**
-2. Edit or create a zone (e.g., "United States")
-3. Click **Add shipping method**
-4. Add: First Class, Ground Advantage, Priority, Express
+1. Go to Inkfinit Shipping → Presets
+2. Create preset with dimensions, weight, and packaging
+3. Assign to products via product edit screen sidebar
 
-### 4. Assign Presets (Optional)
+### Label Printing (Pro/Enterprise)
 
-1. Edit a product
-2. Select a **Shipping Preset** from the sidebar
-3. Preset provides default dimensions/weight if product doesn't have them
+Supports multiple printer types and formats:
 
-## 📁 File Structure
+| Printer Type | Formats | Label Sizes |
+|--------------|---------|-------------|
+| Zebra | ZPL, PDF | 4x6" |
+| Rollo | PDF | 4x6" |
+| DYMO | PDF | 4x6" |
+| Brother | PDF | 4x6" |
+| Standard | PDF | 4x6", 8.5x11" |
 
-```text
-wtc-shipping-core/
-├── plugin.php                     # Main plugin file
-├── uninstall.php                  # Cleanup on uninstall
-├── readme.txt                     # WordPress.org readme
+Configure in Inkfinit Shipping → Label Settings.
+
+---
+
+## File Structure
+
+```
+inkfinit-usps-shipping-engine/
+├── plugin.php                    # Main plugin file
+├── uninstall.php                 # Cleanup on uninstall
+├── readme.txt                    # WordPress.org readme
+├── README.md                     # GitHub readme (this file)
+│
+├── assets/                       # CSS/JS assets
+│   ├── admin-*.js/css           # Admin panel assets
+│   ├── frontend-*.js/css        # Customer-facing assets
+│   └── images/                   # Plugin images
+│
+├── includes/                     # Core PHP classes
+│   ├── class-shipping-method.php # Main WooCommerce shipping method
+│   ├── usps-api.php             # USPS OAuth API integration
+│   ├── license.php              # License validation
+│   ├── label-printing.php       # Label generation
+│   ├── presets.php              # Product presets system
+│   └── ...                      # Additional modules
+│
+├── docs/                         # Documentation
+│   └── INDEX.md                 # Documentation hub
+│
+└── license-server/               # License server reference
+    └── README.md                # Integration guide
 ```
 
-├── assets/ │ ├── admin-style.css # Admin styles │ └── frontend-style.css #
-Frontend styles └── includes/ ├── class-shipping-method.php # Base shipping
-method ├── shipping-methods.php # Method registration ├── usps-api.php # USPS
-OAuth API ├── usps-enhanced-features.php # Extended USPS features ├──
-rule-engine.php # Rate calculation logic ├── presets.php # Shipping presets ├──
-admin-page-rates.php # Rates admin page ├── admin-page-presets.php # Presets
-admin page ├── admin-page-features.php # Features showcase ├──
-admin-page-user-guide.php # User documentation ├── admin-diagnostics.php #
-System diagnostics ├── admin-usps-api.php # USPS settings page ├──
-admin-security-dashboard.php # Security monitor ├── bulk-variation-manager.php #
-Bulk variation editing ├── delivery-estimates.php # Delivery date estimates ├──
-customer-tracking-display.php # My Account tracking ├── label-printing.php #
-USPS label generation ├── security-hardening.php # Security layer └── ... (35+
-files total)
+---
 
-````text
+## Migration Guide
 
-## 🔧 Configuration
+### From WTC Custom Shipping
 
-### USPS API Credentials
+This plugin is the rebranded successor to WTC Custom Shipping:
 
-Get free credentials at [USPS Web Tools](https://www.usps.com/business/web-tools-apis/):
+| Old (WTC) | New (Inkfinit) |
+|-----------|----------------|
+| `wtc_` function prefix | `wtcc_` function prefix |
+| `wtc-shipping` slug | `inkfinit-usps-shipping` |
+| WTC Custom Shipping menu | Inkfinit Shipping menu |
 
-1. Register for USPS Web Tools account
-2. Request API access
-3. Copy Consumer Key & Secret
-4. Enter in Inkfinit Shipping → USPS Settings
+**Migration Steps:**
+1. Deactivate WTC Custom Shipping
+2. Install Inkfinit USPS Shipping Engine
+3. Re-enter license key if applicable
+4. Settings migrate automatically
 
-### Shipping Presets
+---
 
-Built-in presets for common products:
+## Troubleshooting
 
-| Preset | Dimensions | Use Case |
-| -------- | ------------ | ---------- |
-| T-Shirt | 10×8×2" | Standard apparel |
-| Hoodie | 14×10×3" | Heavy apparel |
-| Vinyl Record | 13×13×0.5" | 12" LPs |
-| CD/DVD | 6×5×0.5" | Jewel cases |
-| Poster (Rolled) | 36×4×4" | Tube shipping |
-| Sticker Pack | 6×4×0.25" | Small flat items |
+### Common Issues
 
-### Manual Rate Fallback
+**"USPS API Connection Failed"**
+- Verify API credentials are correct
+- Ensure SSL is active on your site
+- Check if USPS API is experiencing downtime
 
-If USPS API is unavailable, configure per-ounce rates:
+**"No shipping rates found"**
+- Verify origin ZIP code is set
+- Check product weights and dimensions
+- Ensure shipping zones are configured
+
+**Rates not showing at checkout**
+- Clear WooCommerce transients
+- Verify customer address is complete
+- Check shipping class assignments
+
+### Diagnostics
+
+Access built-in diagnostics: Inkfinit Shipping → Diagnostics
+- System health check
+- API connection test
+- Configuration validation
+- Debug log export
+
+---
+
+## Developer Reference
+
+### Hooks & Filters
 
 ```php
-First Class:  Base $3.00 + $0.15/oz
-Ground:       Base $4.50 + $0.10/oz
-Priority:     Base $8.00 + $0.20/oz
-Express:      Base $25.00 + $0.30/oz
-````text
+// Modify shipping rates before display
+add_filter('wtcc_shipping_rates', function($rates, $package) {
+    return $rates;
+}, 10, 2);
 
-## 📊 Bulk Variation Manager
+// After label generation
+add_action('wtcc_after_label_generated', function($label_id, $order_id) {
+    // Custom processing
+}, 10, 2);
 
-Update prices or stock for all variations sharing an attribute:
+// Modify calculator output
+add_filter('wtcc_calculator_result', function($result) {
+    return $result;
+});
+```
 
-### Example - Update All "16 oz" Candle Prices
+### License Functions
 
-1. Go to **Inkfinit Shipping → Variation Manager**
-2. Select Attribute: "Size"
-3. Select Value: "16 oz"
-4. Click **Preview Variations**
-5. Choose **Update Prices** tab
-6. Select "Set to exact price" → Enter "29.99"
-7. Click **Apply Changes**
+```php
+// Check license status
+$is_pro = wtcc_is_pro();
+$is_enterprise = wtcc_is_enterprise();
+$tier = wtcc_get_license_tier(); // 'free', 'pro', 'enterprise'
 
-All 50+ variations updated instantly!
+// Feature gating
+if (wtcc_is_pro()) {
+    // Pro+ feature code
+}
+```
 
-## 🛡️ Security
+### REST API Endpoints
 
-- ✅ All inputs sanitized
-- ✅ Nonces verified on all forms
-- ✅ Capability checks on all actions
-- ✅ SQL injection prevention
-- ✅ XSS prevention
-- ✅ CSRF protection
-- ✅ Rate limiting on API calls
-
-## 🧪 Testing
-
-### Verify API Connection
-
-```bash
-Inkfinit Shipping → USPS Settings → Test API Connection
-```text
-
-### Check System Health
-
-```bash
-Inkfinit Shipping → Diagnostics
-```text
-
-## 📝 Changelog
-
-### v1.1.0 (Current)
-
-- PHP 8.1+ full compatibility
-- Comprehensive null safety checks
-- WordPress core deprecation handling
-- Upload directory validation
-- Bulk Variation Manager (Pro+)
-- Delivery date estimates (Pro+)
-- Media Mail & Cubic Rate support
-- Order auto-complete on label print (Pro/Premium/Enterprise)
-- Features & User Guide pages
-- Security hardening layer
-- WooCommerce class loading fix
-- **Commercial licensing implemented** - Free/Pro/Premium/Enterprise tiers
-
-### v1.0.3
-
-- Security audit complete
-- WordPress.org compliance
-- Zero syntax errors
-
-### v1.0.0
-
-- Initial release
-- USPS OAuth v3 API
-- Four shipping methods
-- Shipping presets
-
-## 📄 License
-
-### ⚠️ Proprietary Commercial License
-
-This plugin is **NOT free software** and is **NOT GPL licensed**.
-
-See [LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md) for complete licensing terms,
-including:
-
-- Free Tier usage rights
-- Pro/Premium/Enterprise licensing
-- Restrictions and compliance requirements
-- Warranty and liability disclaimers
-
-## Quick License Summary
-
-| What You Can Do | Free | Pro | Premium | Enterprise |
-| ------------------ | ------ | ------- | --------- | ---------- |
-| Use on own site | ✅ | ✅ | ✅ | ✅ |
-| Client sites | 1 site | 5 sites | Unlimited | Unlimited |
-| Source code access | ❌ | ❌ | Limited | Full |
-| White-label | ❌ | ❌ | ✅ | ✅ |
-| API access | ❌ | ❌ | ✅ | ✅ |
-| Resell/SaaS | ❌ | ❌ | ❌ | ✅ |
-
-### WordPress.org Free Tier
-
-The **Free Tier** of this plugin is available on WordPress.org and includes:
-
-- Core USPS shipping functionality
-- Basic shipping presets
-- Community support only
-- Full USPS API integration
-
-See the
-[WordPress.org plugin page](https://wordpress.org/plugins/wtc-shipping-engine/)
-for the free version.
-
-**Pro, Premium, and Enterprise tiers** are sold exclusively through our website
-and include additional features, priority support, and commercial use rights.
-
-## 📚 Documentation
-
-- **[docs/START.md](docs/START.md)** - New user/developer entry point
-- **[docs/INDEX.md](docs/INDEX.md)** - Complete documentation index
-- **[USER-GUIDE.md](USER-GUIDE.md)** - Complete user instructions
-- **[LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md)** - Licensing & legal terms
-- **docs/getting-started/** - Quick start guides
-- **docs/deployment/** - Installation & troubleshooting
-- **docs/reference/** - API and configuration reference
-
-## 🤝 Support
-
-### Free Tier Support
-
-- Community forum (WordPress.org)
-- Admin Panel documentation
-- Built-in User Guide (Inkfinit Shipping → User Guide)
-- Diagnostics tool (Inkfinit Shipping → Diagnostics)
-
-### Pro/Premium/Enterprise Support
-
-- Email support (included)
-- Priority response times
-- Direct assistance with configuration
-- Custom implementation help (Enterprise)
-- 24/7 support (Enterprise only)
-
-For support inquiries, visit https://inkfinit.pro or email support@inkfinit.pro.
-
-## 🔐 Data Privacy
-
-This plugin:
-
-- ✅ Does NOT collect site usage data
-- ✅ Does NOT track users
-- ✅ Does NOT sell data
-- ✅ Only communicates with USPS API
-- ✅ Only communicates with our servers for license verification (Pro+)
-
-See [LICENSE-COMMERCIAL.md](LICENSE-COMMERCIAL.md) for complete data handling
-policies.
+```
+GET  /wp-json/wtcc/v1/rates         # Get shipping rates
+POST /wp-json/wtcc/v1/labels        # Generate label
+GET  /wp-json/wtcc/v1/tracking/{id} # Get tracking info
+```
 
 ---
 
-## 👥 About
+## Support
 
-Built with ❤️ for WooCommerce stores using modern USPS APIs.
-
-### Premium shipping simplified. Professional support included.
-
-### Development
-
-**Developed by:** Inkfinit LLC  
-**Purpose:** Professional USPS shipping engine to make shipping operations easier for e-commerce stores and organizations worldwide.
-
-This plugin was created to simplify shipping workflows, allowing organizations
-to focus on what matters while we handle the logistics complexity.
+- **Documentation:** See `/docs/INDEX.md`
+- **Issues:** GitHub Issues
+- **Pro Support:** support@inkfinit.com
 
 ---
 
-### © 2025 Inkfinit LLC. All Rights Reserved.
+## License
+
+- **Free Edition:** GPLv2 or later
+- **Pro/Enterprise:** Commercial license (see LICENSE-COMMERCIAL.md)
+
+Copyright © 2025 Inkfinit / WoodsToll Company
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for full version history.
+
+### Recent Updates
+
+**v1.3.2** (Current)
+- Enhanced security hardening
+- Improved thermal printer support
+- Pro/Enterprise tier gating refinements
+
+**v1.3.1**
+- USPS OAuth v3 API migration
+- New diagnostics dashboard
+- Bulk variation manager
