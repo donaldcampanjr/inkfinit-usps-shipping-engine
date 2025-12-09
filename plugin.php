@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Inkfinit USPS Shipping Engine
- * Plugin URI: https://github.com/donaldcampanjr/wtc-shipping-core-design
+ * Plugin URI: https://inkfinit.pro/plugins/usps-shipping/
  * Description: Professional real-time USPS shipping rates, presets, and delivery estimates.
  * Version: 1.3.2
  * Author: Inkfinit LLC

@@ -49,22 +49,37 @@ function wtcc_shipping_dashboard() {
 		}
 	}
 
-	// Product stats
+	// Product stats - use efficient count queries instead of loading all products
 	$products_with_weight = 0;
 	$products_with_dimensions = 0;
 	$products_total = 0;
-	$products = wc_get_products( array( 'limit' => -1, 'status' => 'publish' ) );
-	if ( $products ) {
-		$products_total = count( $products );
-		foreach ( $products as $product ) {
-			if ( $product->get_weight() > 0 ) {
-				$products_with_weight++;
-			}
-			if ( $product->get_length() > 0 && $product->get_width() > 0 && $product->get_height() > 0 ) {
-				$products_with_dimensions++;
-			}
-		}
-	}
+	
+	// Get total product count efficiently
+	$products_total = (int) wp_count_posts( 'product' )->publish;
+	
+	// Count products with weight using direct query (much faster)
+	global $wpdb;
+	$products_with_weight = (int) $wpdb->get_var( "
+		SELECT COUNT(DISTINCT p.ID) 
+		FROM {$wpdb->posts} p
+		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+		WHERE p.post_type = 'product' 
+		AND p.post_status = 'publish'
+		AND pm.meta_key = '_weight'
+		AND pm.meta_value > 0
+		AND pm.meta_value != ''
+	" );
+	
+	// Count products with all dimensions
+	$products_with_dimensions = (int) $wpdb->get_var( "
+		SELECT COUNT(DISTINCT p.ID) 
+		FROM {$wpdb->posts} p
+		INNER JOIN {$wpdb->postmeta} pm1 ON p.ID = pm1.post_id AND pm1.meta_key = '_length' AND pm1.meta_value > 0
+		INNER JOIN {$wpdb->postmeta} pm2 ON p.ID = pm2.post_id AND pm2.meta_key = '_width' AND pm2.meta_value > 0
+		INNER JOIN {$wpdb->postmeta} pm3 ON p.ID = pm3.post_id AND pm3.meta_key = '_height' AND pm3.meta_value > 0
+		WHERE p.post_type = 'product' 
+		AND p.post_status = 'publish'
+	" );
 
 	// Recent orders
 	$recent_orders = wc_get_orders( array(

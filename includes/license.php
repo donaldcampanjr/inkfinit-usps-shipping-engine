@@ -65,29 +65,44 @@ function wtcc_get_edition() {
 
 /**
  * Determine if this install should behave as Pro or higher.
+ * Result is cached per request for performance.
  *
  * @return bool
  */
 function wtcc_is_pro() {
-	return in_array( wtcc_get_edition(), array( 'pro', 'premium', 'enterprise' ), true );
+	static $is_pro = null;
+	if ( $is_pro === null ) {
+		$is_pro = in_array( wtcc_get_edition(), array( 'pro', 'premium', 'enterprise' ), true );
+	}
+	return $is_pro;
 }
 
 /**
  * Determine if this install is Premium or higher.
+ * Result is cached per request for performance.
  *
  * @return bool
  */
 function wtcc_is_premium() {
-	return in_array( wtcc_get_edition(), array( 'premium', 'enterprise' ), true );
+	static $is_premium = null;
+	if ( $is_premium === null ) {
+		$is_premium = in_array( wtcc_get_edition(), array( 'premium', 'enterprise' ), true );
+	}
+	return $is_premium;
 }
 
 /**
  * Determine if this install is Enterprise.
+ * Result is cached per request for performance.
  *
  * @return bool
  */
 function wtcc_is_enterprise() {
-	return 'enterprise' === wtcc_get_edition();
+	static $is_enterprise = null;
+	if ( $is_enterprise === null ) {
+		$is_enterprise = 'enterprise' === wtcc_get_edition();
+	}
+	return $is_enterprise;
 }
 
 /**
@@ -143,7 +158,7 @@ function wtcc_get_license_data() {
 		 * BEFORE PUBLIC RELEASE: Change this to TRUE and rebuild ZIP.
 		 * ============================================================
 		 */
-		$disable_test_keys_permanently = false; // TODO: Set to TRUE for production release
+		$disable_test_keys_permanently = true; // PRODUCTION MODE - Test keys disabled
 
 		if ( $disable_test_keys_permanently ) {
 			return array(

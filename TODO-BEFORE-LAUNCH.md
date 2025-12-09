@@ -9,6 +9,20 @@ This file tracks tasks that must be completed before public release. Add items h
 
 ## 🔴 CRITICAL (Must Complete)
 
+### Security & Code Quality (From Devil's Advocate Audit)
+
+- [x] ~~Set `$disable_test_keys_permanently = true` in license.php~~ ✅ FIXED
+- [x] ~~Fix Plugin URI to marketing site~~ ✅ FIXED  
+- [x] ~~Add index.php to includes/, assets/, assets/images/~~ ✅ FIXED
+- [x] ~~Fix debug logging to not leak API tokens~~ ✅ FIXED
+- [x] ~~Fix dashboard performance (was loading ALL products)~~ ✅ FIXED
+- [x] ~~Add caching to wtcc_is_pro() calls~~ ✅ FIXED
+- [ ] **Move inline styles to CSS files** (50+ instances - WordPress.org will reject)
+- [ ] **Move inline JavaScript to external files** (address-validation.php)
+- [ ] Add rate limiting to public AJAX endpoints (nopriv handlers)
+- [ ] Add `wp_unslash()` to all $_POST/$_GET sanitization
+- [ ] Audit all strings for proper i18n (some hardcoded English found)
+
 ### Screenshots for WordPress.org
 
 - [ ] **Screenshot 1:** Dashboard overview (admin panel)

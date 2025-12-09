@@ -100,10 +100,15 @@ function wtcc_shipping_get_oauth_token( $credentials, $force_refresh = false ) {
 	$status_code = wp_remote_retrieve_response_code( $response );
 	$body_raw = wp_remote_retrieve_body( $response );
 	
-	// Log for debugging
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+	// Log for debugging (sanitized - never log tokens or secrets)
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
 		error_log( 'USPS OAuth Response Code: ' . $status_code );
-		error_log( 'USPS OAuth Response: ' . substr( $body_raw, 0, 500 ) );
+		// Only log error responses, never success (which contains token)
+		if ( $status_code !== 200 ) {
+			// Redact any potential secrets from error response
+			$safe_response = preg_replace( '/(access_token|client_secret|token)["\s:]+["\w\-]+/i', '$1: [REDACTED]', substr( $body_raw, 0, 300 ) );
+			error_log( 'USPS OAuth Error Response: ' . $safe_response );
+		}
 	}
 
 	$body = json_decode( $body_raw, true );
